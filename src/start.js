@@ -14,25 +14,16 @@ import Welcome from "./welcome";
 //
 let elem;
 
-if(location.pathname == '/welcome'){
+if (location.pathname == "/welcome") {
     elem = <Welcome />;
 } else {
-    elem = <img src="logo.jpg"/>;
+    elem = <img src="logo.jpg" />;
 }
 
-
-
-
-
 ReactDOM.render(
-    elem,// JSX
-    document.querySelector("main"));
-
-
-
-
-
-
+    elem, // JSX
+    document.querySelector("main")
+);
 
 //HelloWorld is a React component, all React components MUST start with capital letter
 
