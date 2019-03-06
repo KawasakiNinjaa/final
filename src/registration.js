@@ -37,7 +37,7 @@ export default class Registration extends React.Component {
             //{we need to make a fn to
             <div id="registration">
                 <img src="logo.jpg" />
-                <h2> s i g n up </h2>
+                <h2> c r e a t e A n e w A c c o u n t </h2>
                 {this.state.error && (
                     <div className="error">
                         <p> Oops! </p>
@@ -72,7 +72,7 @@ export default class Registration extends React.Component {
                 />
                 <br />
                 <br />
-                <button onClick={this.submit}> submit </button>
+                <button onClick={this.submit}> SIGN UP </button>
                 <p>
                     Already a member? <Link to="/">Log in here </Link>
                 </p>

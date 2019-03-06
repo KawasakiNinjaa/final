@@ -37,34 +37,65 @@ export default class Login extends React.Component {
                 <div id="loginBar">
                     <img id="loginLogo" src="logo.jpg" />
                     <div id="loginform">
-                        <h2> L o g I n </h2>
                         {this.state.error && (
                             <div className="error">
                                 <p> Oops!</p>{" "}
                             </div>
                         )}
-                        <input
-                            name="email"
-                            onChange={this.handleChange}
-                            placeholder="e-mail"
-                        />
-                        <input
-                            type="password"
-                            name="password"
-                            onChange={this.handleChange}
-                            placeholder="password"
-                        />
-
-                        <button onClick={this.submit}> submit </button>
-                        <p>
+                        <div id="loginform1">
+                            <div>
+                                <p> e - m a i l </p>
+                                <input
+                                    name="email"
+                                    onChange={this.handleChange}
+                                    placeholder="e-mail"
+                                />
+                            </div>
+                            <div>
+                                <p> password </p>
+                                <input
+                                    type="password"
+                                    name="password"
+                                    onChange={this.handleChange}
+                                    placeholder="password"
+                                />
+                            </div>
+                            <div>
+                                <br />
+                                <button onClick={this.submit}>
+                                    {" "}
+                                    L o g I n{" "}
+                                </button>
+                            </div>
+                        </div>
+                        <br />
+                        <p id="newhere">
                             new here? <Link to="/signup">join us! </Link>
                         </p>
                     </div>
                 </div>
-                <br />
-                <br />
-                <br />
+
                 <Caroussel />
+                <h1>
+                    what about all this space what about all this space what
+                    about all this space what about all this space what about
+                    all this space what about all this space what about all this
+                    space what about all this space what about all this space
+                    what about all this space what about all this space what
+                    about all this space what about all this space what about
+                    all this space what about all this space what about all this
+                    space what about all this space what about all this space
+                    what about all this space what about all this space what
+                    about all this space what about all this space what about
+                    all this space what about all this space what about all this
+                    space what about all this space what about all this space
+                    what about all this space what about all this space what
+                    about all this space what about all this space what about
+                    all this space what about all this space what about all this
+                    space what about all this space what about all this space
+                    what about all this space what about all this space what
+                    about all this space what about all this space
+                </h1>
             </div>
         );
     }

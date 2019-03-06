@@ -1,7 +1,11 @@
 * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
+    background-color: lightpink;
 }
 input {
     background: white;
@@ -15,13 +19,33 @@ button {
 }
 
 #loginBar {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+    display: block;
+    height: 120px;
 }
 #loginLogo {
-    height: 50px;
-    width: 50px;
+    float: left;
+    height: 100px;
+    width: 200px;
+    padding: 20px;
+    margin-left: 200px;
+}
+#loginform {
+    float: right;
+    padding: 20px;
+    margin-right: 150px;
+}
+#loginform1 {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+#newhere {
+    float: right;
+}
+
+.wholecaroussel {
+    display: block;
 }
 
 #caroussel {
