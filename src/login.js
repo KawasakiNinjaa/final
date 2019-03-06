@@ -1,5 +1,7 @@
 import React from "react";
 import axios from "./axios";
+import Caroussel from "./caroussel";
+import { Link } from "react-router-dom";
 
 export default class Login extends React.Component {
     constructor(props) {
@@ -32,28 +34,37 @@ export default class Login extends React.Component {
     render() {
         return (
             <div>
-                <h2> L o g I n </h2>
-                {this.state.error && (
-                    <div className="error">
-                        <p> Oops!</p>{" "}
+                <div id="loginBar">
+                    <img id="loginLogo" src="logo.jpg" />
+                    <div id="loginform">
+                        <h2> L o g I n </h2>
+                        {this.state.error && (
+                            <div className="error">
+                                <p> Oops!</p>{" "}
+                            </div>
+                        )}
+                        <input
+                            name="email"
+                            onChange={this.handleChange}
+                            placeholder="e-mail"
+                        />
+                        <input
+                            type="password"
+                            name="password"
+                            onChange={this.handleChange}
+                            placeholder="password"
+                        />
+
+                        <button onClick={this.submit}> submit </button>
+                        <p>
+                            new here? <Link to="/signup">join us! </Link>
+                        </p>
                     </div>
-                )}
-                <input
-                    name="email"
-                    onChange={this.handleChange}
-                    placeholder="e-mail"
-                />
+                </div>
                 <br />
                 <br />
-                <input
-                    type="password"
-                    name="password"
-                    onChange={this.handleChange}
-                    placeholder="password"
-                />
                 <br />
-                <br />
-                <button onClick={this.submit}> submit </button>
+                <Caroussel />
             </div>
         );
     }

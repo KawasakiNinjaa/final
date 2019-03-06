@@ -80,11 +80,13 @@ app.post("/login", (req, res) => {
             console.log("results in login: ", results);
             let psswdOnDb = results.rows[0].password;
             let userId = results.rows[0].id;
+
             bcrypt
                 .checkPassword(userPassword, psswdOnDb)
                 .then(itsAMatch => {
                     if (itsAMatch) {
                         req.session.userId = userId;
+
                         res.json({ success: true });
                     } else {
                         res.json({ error: true });
