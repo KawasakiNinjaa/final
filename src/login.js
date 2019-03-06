@@ -19,7 +19,7 @@ export default class Login extends React.Component {
             })
             .then(({ data }) => {
                 console.log("data in submit: ", data);
-                if (data) {
+                if (data.success) {
                     location.replace("/");
                     //replace() replaces the former link on history tab = user can't get back to register if logged in (cookies in get req)
                 } else {
@@ -33,7 +33,11 @@ export default class Login extends React.Component {
         return (
             <div>
                 <h2> L o g I n </h2>
-                {this.state.error && <div className="error"> Oops! </div>}
+                {this.state.error && (
+                    <div className="error">
+                        <p> Oops!</p>{" "}
+                    </div>
+                )}
                 <input
                     name="email"
                     onChange={this.handleChange}

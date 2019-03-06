@@ -61,7 +61,7 @@ app.post("/registration", (req, res) => {
                     console.log("results in submitUserInfo: ", results);
                     // set cookies so that res.redirect in GET welcome works. user is logged in
                     req.session.userId = results.rows[0].id;
-                    res.json(results);
+                    res.json({ success: true });
                 })
                 .catch(err => {
                     console.log("err in submitUserInfo: ", err);
@@ -85,13 +85,14 @@ app.post("/login", (req, res) => {
                 .then(itsAMatch => {
                     if (itsAMatch) {
                         req.session.userId = userId;
-                        res.json(results.rows[0]);
+                        res.json({ success: true });
                     } else {
                         res.json({ error: true });
                     }
                 })
                 .catch(err => {
                     console.log("err in checkPassword: ", err);
+                    res.json({ error: true });
                 });
         })
         .catch(err => {
