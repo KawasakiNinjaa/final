@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const db = require("./db");
 const bcrypt = require("./bcrypt");
+const csurf = require("csurf");
 
 app.use(cookieParser());
 app.use(
@@ -15,6 +16,12 @@ app.use(
         maxAge: 1000 * 60 * 60 * 24 * 14 //cookies last two weeks
     })
 );
+app.use(csurf());
+
+app.use(function(req, res, next) {
+    res.cookie("mytoken", req.csrfToken());
+    next();
+});
 app.use(bodyParser.json({}));
 
 app.use(express.static("./wintergreen-socialnetwork"));
@@ -62,6 +69,35 @@ app.post("/registration", (req, res) => {
                 });
         });
     }
+});
+
+app.post("/login", (req, res) => {
+    console.log("body in post/login: ", req.body);
+    let userEmail = req.body.email;
+    let userPassword = req.body.password;
+    db.logIn(userEmail)
+        .then(results => {
+            console.log("results in login: ", results);
+            let psswdOnDb = results.rows[0].password;
+            let userId = results.rows[0].id;
+            bcrypt
+                .checkPassword(userPassword, psswdOnDb)
+                .then(itsAMatch => {
+                    if (itsAMatch) {
+                        req.session.userId = userId;
+                        res.json(results.rows[0]);
+                    } else {
+                        res.json({ error: true });
+                    }
+                })
+                .catch(err => {
+                    console.log("err in checkPassword: ", err);
+                });
+        })
+        .catch(err => {
+            console.log("err in login: ", err);
+            res.json({ error: true });
+        });
 });
 
 app.get("/welcome", (req, res) => {

@@ -1,8 +1,7 @@
 import React from "react";
 import axios from "./axios";
-import { Link } from "react-router-dom";
 
-export default class Registration extends React.Component {
+export default class Login extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
@@ -14,9 +13,7 @@ export default class Registration extends React.Component {
     }
     submit() {
         axios
-            .post("/registration", {
-                first: this.first,
-                last: this.last,
+            .post("/login", {
                 email: this.email,
                 password: this.password
             })
@@ -34,24 +31,9 @@ export default class Registration extends React.Component {
     }
     render() {
         return (
-            //{we need to make a fn to
             <div>
-                <h2> s i g n up </h2>
+                <h2> L o g I n </h2>
                 {this.state.error && <div className="error"> Oops! </div>}
-                <input
-                    name="first"
-                    onChange={this.handleChange}
-                    placeholder="First Name"
-                />
-                <br />
-                <br />
-                <input
-                    name="last"
-                    onChange={this.handleChange}
-                    placeholder="Last Name"
-                />
-                <br />
-                <br />
                 <input
                     name="email"
                     onChange={this.handleChange}
@@ -68,9 +50,6 @@ export default class Registration extends React.Component {
                 <br />
                 <br />
                 <button onClick={this.submit}> submit </button>
-                <p>
-                    Already a member? <Link to="/login">Log in here </Link>
-                </p>
             </div>
         );
     }

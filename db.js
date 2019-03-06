@@ -13,3 +13,10 @@ exports.submitUserInfo = function submitUserInfo(first, last, email, password) {
 
     return db.query(q, params);
 };
+
+exports.logIn = function logIn(email) {
+    let q = "SELECT id, email, password FROM users WHERE email= $1";
+    let params = [email];
+
+    return db.query(q, params);
+};
