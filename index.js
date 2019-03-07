@@ -5,8 +5,33 @@ const cookieSession = require("cookie-session");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const db = require("./db");
+const s3 = require("./s3");
 const bcrypt = require("./bcrypt");
 const csurf = require("csurf");
+
+var multer = require("multer");
+var uidSafe = require("uid-safe");
+var path = require("path");
+
+/// upload///////////////////////////
+var diskStorage = multer.diskStorage({
+    destination: function(req, file, callback) {
+        callback(null, __dirname + "/uploads");
+    },
+    filename: function(req, file, callback) {
+        uidSafe(24).then(function(uid) {
+            callback(null, uid + path.extname(file.originalname));
+        });
+    }
+});
+
+var uploader = multer({
+    storage: diskStorage,
+    limits: {
+        fileSize: 2097152
+    }
+});
+///////////////////////////
 
 app.use(cookieParser());
 app.use(
@@ -110,6 +135,46 @@ app.get("/welcome", (req, res) => {
         res.sendFile(__dirname + "/index.html");
     }
 });
+
+function requireLoggedInUser(req, res, next) {
+    if (!req.session.userId) {
+        res.sendStatus(403);
+    } else {
+        next();
+    }
+}
+app.get("/user", requireLoggedInUser, (req, res) => {
+    db.getUserById(req.session.userId).then(({ rows }) => {
+        console.log("rows in getUserById: ", rows);
+        //const user = rows.pop();
+        // if (!user.image_url) {
+        //     user.image_url = "default.jpg";
+        // }
+        res.json(rows[0]);
+    });
+});
+
+app.post(
+    "/upload-profilepic",
+    uploader.single("file"),
+    s3.upload,
+    (req, res) => {
+        console.log("req.file in upload: ", req.file);
+        console.log("req.body in upload: ", req.body);
+        let file = req.file;
+        if (file) {
+            let imgUrl = `https://s3.amazonaws.com/spicedling/${file.filename}`;
+            db.uploadImg(imgUrl).then(results => {
+                console.log("results in uploadImg: ", results);
+                res.json();
+            });
+        } else {
+            res.json({
+                success: false
+            });
+        }
+    }
+);
 
 app.get("*", function(req, res) {
     if (!req.session.userId) {

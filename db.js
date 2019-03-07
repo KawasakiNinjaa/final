@@ -20,3 +20,17 @@ exports.logIn = function logIn(email) {
 
     return db.query(q, params);
 };
+
+exports.getUserById = function getUserById(id) {
+    let q = "SELECT id, first, last, img_url FROM users WHERE id= $1";
+    let params = [id];
+
+    return db.query(q, params);
+};
+
+exports.uploadImg = function uploadImg(imgUrl) {
+    let q = "";
+    let params = [imgUrl];
+
+    return db.query(q, params);
+};
