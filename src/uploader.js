@@ -7,24 +7,31 @@ export default class Uploader extends React.Component {
         this.state = {};
         this.upload = this.upload.bind(this);
     }
-    upload() {
-        axios
-            .post("/upload-profilepic", {
-                file: this.file
-            })
-            .then(({ data }) => {});
+    upload(a) {
+        console.log("I am upload()");
+        axios.post("/upload-profilepic", a).then(({ data }) => {
+            console.log("data in upload-profilepic", data);
+            this.props.setImage(data.img_url);
+        });
     }
     render() {
         return (
-            <div>
+            <div id="uploadform">
                 <input
                     name="file"
                     type="file"
+                    value={this.formData}
                     onChange={e => {
                         const formData = new FormData();
                         formData.append("file", e.target.files[0]);
+                        console.log("file: ", e.target.files[0]);
+                        console.log("formData: ", formData);
+
+                        this.upload(formData);
                     }}
                 />
+
+                <button onClick={this.upload}> set as profile picture </button>
             </div>
         );
     }

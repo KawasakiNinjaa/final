@@ -146,7 +146,7 @@ function requireLoggedInUser(req, res, next) {
 app.get("/user", requireLoggedInUser, (req, res) => {
     db.getUserById(req.session.userId).then(({ rows }) => {
         console.log("rows in getUserById: ", rows);
-        //const user = rows.pop();
+        // const user = rows.pop();
         // if (!user.image_url) {
         //     user.image_url = "default.jpg";
         // }
@@ -160,13 +160,12 @@ app.post(
     s3.upload,
     (req, res) => {
         console.log("req.file in upload: ", req.file);
-        console.log("req.body in upload: ", req.body);
         let file = req.file;
         if (file) {
             let imgUrl = `https://s3.amazonaws.com/spicedling/${file.filename}`;
-            db.uploadImg(imgUrl).then(results => {
+            db.uploadImg(imgUrl, req.session.userId).then(results => {
                 console.log("results in uploadImg: ", results);
-                res.json();
+                res.json(results.rows[0]);
             });
         } else {
             res.json({

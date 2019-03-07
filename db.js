@@ -28,9 +28,9 @@ exports.getUserById = function getUserById(id) {
     return db.query(q, params);
 };
 
-exports.uploadImg = function uploadImg(imgUrl) {
-    let q = "";
-    let params = [imgUrl];
+exports.uploadImg = function uploadImg(imgUrl, id) {
+    let q = "UPDATE users SET img_url= $1 WHERE id=$2 RETURNING img_url";
+    let params = [imgUrl, id];
 
     return db.query(q, params);
 };

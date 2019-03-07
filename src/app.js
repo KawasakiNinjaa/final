@@ -13,10 +13,12 @@ export default class App extends React.Component {
         this.setImage = this.setImage.bind(this);
     }
     showUploader() {
-        this.state.uploaderIsVisible = true;
+        this.setState({ uploaderIsVisible: true });
+        console.log("I am showUploader");
     }
     setImage(image) {
-        this.setState({ image });
+        console.log("image, ", image);
+        this.setState({ img_url: image, uploaderIsVisible: false });
     }
     componentDidMount() {
         axios.get("/user").then(({ data }) => {
@@ -33,7 +35,7 @@ export default class App extends React.Component {
             <div>
                 <img src="logo.jpg" />
                 <ProfilePic
-                    image={this.state.image}
+                    image={this.state.img_url}
                     first={this.state.first}
                     last={this.state.last}
                     showUploader={this.showUploader}

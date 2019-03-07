@@ -44,6 +44,10 @@ button {
     float: right;
 }
 
+#uploadform {
+    border: 1px solid black;
+}
+
 .wholecaroussel {
     display: block;
 }
