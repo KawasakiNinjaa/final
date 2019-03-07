@@ -32,14 +32,17 @@ export default class App extends React.Component {
             return null;
         }
         return (
-            <div>
-                <img src="logo.jpg" />
-                <ProfilePic
-                    image={this.state.img_url}
-                    first={this.state.first}
-                    last={this.state.last}
-                    showUploader={this.showUploader}
-                />
+            <div id="app">
+                <div id="appbar">
+                    <img id="logoinapp" src="logo.jpg" />
+                    <ProfilePic
+                        image={this.state.img_url}
+                        first={this.state.first}
+                        last={this.state.last}
+                        showUploader={this.showUploader}
+                    />
+                </div>
+                <h1> HI SO BASICALLY I'M APP.JS WUSSUP BRO </h1>
                 {this.state.uploaderIsVisible && (
                     <Uploader setImage={this.setImage} />
                 )}

@@ -17,6 +17,7 @@ export default class Uploader extends React.Component {
     render() {
         return (
             <div id="uploadform">
+                <h2> u p d a t e Y o u r ProfilePic</h2>
                 <input
                     name="file"
                     type="file"
@@ -30,8 +31,6 @@ export default class Uploader extends React.Component {
                         this.upload(formData);
                     }}
                 />
-
-                <button onClick={this.upload}> set as profile picture </button>
             </div>
         );
     }

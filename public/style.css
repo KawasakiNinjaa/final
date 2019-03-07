@@ -21,6 +21,14 @@ button {
 #loginBar {
     display: block;
     height: 120px;
+    background-image: linear-gradient(
+        to bottom,
+        #a5f6ec,
+        #baf7f0,
+        #cef9f3,
+        #e1faf7,
+        #f3fbfa
+    );
 }
 #loginLogo {
     float: left;
@@ -43,21 +51,59 @@ button {
 #newhere {
     float: right;
 }
-
 #uploadform {
     border: 1px solid black;
+    top: 20%;
+    left: 37%;
+    background-image: linear-gradient(
+        to bottom,
+        #a5f6ec,
+        #baf7f0,
+        #cef9f3,
+        #e1faf7,
+        #f3fbfa
+    );
+    position: fixed;
+    height: 400px;
+    width: 400px;
 }
-
+#app {
+    text-align: center;
+}
+#appbar {
+    display: block;
+    height: 120px;
+    border: 1px solid black;
+    background-image: linear-gradient(
+        to bottom,
+        #a5f6ec,
+        #baf7f0,
+        #cef9f3,
+        #e1faf7,
+        #f3fbfa
+    );
+}
+#logoinapp {
+    position: relative;
+    display: inline-block;
+    height: 100px;
+    float: left;
+}
+#profilepic {
+    display: inline-block;
+    float: right;
+    height: 100px;
+    margin-top: 10px;
+    margin-right: 150px;
+}
 .wholecaroussel {
     display: block;
 }
-
 #caroussel {
     position: relative;
     height: 600px;
     overflow: hidden;
 }
-
 .kitty {
     position: absolute;
     top: 0;
@@ -66,26 +112,22 @@ button {
     height: 100%;
     transform: translateX(100%);
 }
-
 .kitty.onscreen {
     transform: translateX(0);
     transition-property: transform;
     transition-duration: 1s;
 }
-
 .kitty.exiting {
     transform: translateX(-100%);
     transition-property: transform;
     transition-duration: 1s;
 }
-
 .kitty img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center;
 }
-
 .wrap {
     position: relative;
     bottom: 20px;
@@ -93,7 +135,6 @@ button {
     width: 100%;
     bottom: 60px;
 }
-
 .dots {
     width: 20px;
     height: 20px;
@@ -102,7 +143,6 @@ button {
     display: inline-block;
     margin: 0 5px;
 }
-
 .lit {
     background-color: white;
 }

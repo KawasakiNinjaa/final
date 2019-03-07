@@ -4,8 +4,9 @@ export default function ProfilePic(props) {
     //({first, last, showUploader, image='/default.jpg'})
     const image = props.image || "./default.jpg";
     return (
-        <div>
+        <div id="profilepic-wrap">
             <img
+                id="profilepic"
                 src={image}
                 alt={`${props.first} ${props.last}`}
                 onClick={props.showUploader}
