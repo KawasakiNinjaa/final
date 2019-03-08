@@ -96,6 +96,9 @@ button {
     margin-top: 10px;
     margin-right: 150px;
 }
+#profile-wrap {
+    border: 1px solid black;
+}
 .wholecaroussel {
     display: block;
 }
