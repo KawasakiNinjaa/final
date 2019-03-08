@@ -183,8 +183,11 @@ app.get("/getbio", (req, res) => {
 });
 
 app.post("/setbio", (req, res) => {
-    console.log("body in setbio: ", req.body);
-    db.setBio;
+    console.log("body in setbio: ", req.body.biotext);
+    db.setBio(req.body.biotext, req.session.userId).then(results => {
+        console.log("results in setBio: ", results.rows[0]);
+        res.json(results.rows[0]);
+    });
 });
 
 app.get("*", function(req, res) {

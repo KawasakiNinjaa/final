@@ -35,9 +35,9 @@ exports.uploadImg = function uploadImg(imgUrl, id) {
     return db.query(q, params);
 };
 
-exports.setBio = function setBio(bioText) {
-    let q = "INSERT INTO users bio VALUE $1 RETURNING bio";
-    let params = [bioText];
+exports.setBio = function setBio(bioText, userId) {
+    let q = "UPDATE users SET bio= $1 WHERE id= $2 RETURNING bio";
+    let params = [bioText, userId];
 
     return db.query(q, params);
 };

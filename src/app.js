@@ -24,8 +24,8 @@ export default class App extends React.Component {
         this.setState({ img_url: image, uploaderIsVisible: false });
     }
     setBio(biotext) {
-        console.log("i am setBio");
-        this.setState({ biotext });
+        console.log("i am setBio", biotext.bio);
+        this.setState({ bio: biotext.bio });
     }
     componentDidMount() {
         axios.get("/user").then(({ data }) => {
