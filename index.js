@@ -175,6 +175,18 @@ app.post(
     }
 );
 
+app.get("/getbio", (req, res) => {
+    db.getBioById(req.session.userId).then(results => {
+        console.log("results in getBioById: ", results);
+        res.json();
+    });
+});
+
+app.post("/setbio", (req, res) => {
+    console.log("body in setbio: ", req.body);
+    db.setBio;
+});
+
 app.get("*", function(req, res) {
     if (!req.session.userId) {
         res.redirect("/welcome");

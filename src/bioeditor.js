@@ -8,8 +8,9 @@ export default class BioEditor extends React.Component {
     render() {
         return (
             <div>
-                <p> ich bin bioeditor.js </p>
+                <p> this.props.bio = {this.props.bio} </p>
                 <textarea rows="5" columns="25" />
+                <button>updateBio</button>
             </div>
         );
     }

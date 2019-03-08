@@ -8,10 +8,12 @@ export default class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            uploaderIsVisible: false
+            uploaderIsVisible: false,
+            bio: "still no bio just testing"
         };
         this.showUploader = this.showUploader.bind(this);
         this.setImage = this.setImage.bind(this);
+        this.setBio = this.setBio.bind(this);
     }
     showUploader() {
         this.setState({ uploaderIsVisible: true });
@@ -21,10 +23,17 @@ export default class App extends React.Component {
         console.log("image, ", image);
         this.setState({ img_url: image, uploaderIsVisible: false });
     }
+    setBio(biotext) {
+        console.log("i am setBio");
+        this.setState({ biotext });
+    }
     componentDidMount() {
         axios.get("/user").then(({ data }) => {
             console.log("data in get/user: ", data);
             this.setState(data); // we res.json from the server and pass it to state, in order to this.state.whatever later and use it in our component
+        });
+        axios.get("/getbio").then(({ data }) => {
+            console.log("data in getbio: ", data);
         });
     }
     render() {
@@ -49,6 +58,8 @@ export default class App extends React.Component {
                     last={this.state.last}
                     image={this.state.img_url}
                     showUploader={this.showUploader}
+                    bio={this.state.bio}
+                    setBio={this.setBio}
                 />
                 {this.state.uploaderIsVisible && (
                     <Uploader setImage={this.setImage} />
