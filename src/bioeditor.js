@@ -4,9 +4,12 @@ import axios from "./axios";
 export default class BioEditor extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            bioEditorIsVisible: false
+        };
         this.handleChange = this.handleChange.bind(this);
         this.update = this.update.bind(this);
+        this.showBioEditor = this.showBioEditor.bind(this);
     }
     handleChange(e) {
         this[e.target.name] = e.target.value;
@@ -18,23 +21,43 @@ export default class BioEditor extends React.Component {
             // this.setState({ biotext });
         });
     }
+    showBioEditor() {
+        console.log("I am showBioEditor");
+        this.setState({ bioEditorIsVisible: true });
+    }
     render() {
         return (
             <div>
-                <p> this.props.bio = {this.props.bio} </p>
-                <textarea
-                    name="biotext"
-                    rows="5"
-                    columns="25"
-                    onChange={this.handleChange}
-                />
-                <button
-                    onClick={() => {
-                        this.update(this.biotext);
-                    }}
-                >
-                    updateBio
-                </button>
+                {!this.props.bio && (
+                    <p onClick={this.showBioEditor}> add a fucking bio</p>
+                )}
+                <h2> {this.props.bio}</h2>
+                {this.props.bio && (
+                    <div>
+                        {" "}
+                        {this.props.bio},{" "}
+                        <p onClick={this.showBioEditor}> e di t Your Bio </p>
+                    </div>
+                )}
+
+                {this.state.bioEditorIsVisible && (
+                    <div name="textarea">
+                        <textarea
+                            name="biotext"
+                            rows="5"
+                            columns="25"
+                            onChange={this.handleChange}
+                        />
+                        <button
+                            onClick={() => {
+                                this.update(this.biotext);
+                            }}
+                        >
+                            updateBio
+                        </button>
+                    </div>
+                )}
+                {!this.state.bioEditorIsVisible && null}
             </div>
         );
     }

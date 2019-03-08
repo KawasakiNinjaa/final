@@ -177,8 +177,8 @@ app.post(
 
 app.get("/getbio", (req, res) => {
     db.getBioById(req.session.userId).then(results => {
-        console.log("results in getBioById: ", results);
-        res.json();
+        console.log("results in getBioById: ", results.rows[0]);
+        res.json(results.rows[0]);
     });
 });
 

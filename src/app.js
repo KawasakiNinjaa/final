@@ -9,7 +9,7 @@ export default class App extends React.Component {
         super(props);
         this.state = {
             uploaderIsVisible: false,
-            bio: "still no bio just testing"
+            bio: ""
         };
         this.showUploader = this.showUploader.bind(this);
         this.setImage = this.setImage.bind(this);
@@ -19,6 +19,7 @@ export default class App extends React.Component {
         this.setState({ uploaderIsVisible: true });
         console.log("I am showUploader");
     }
+
     setImage(image) {
         console.log("image, ", image);
         this.setState({ img_url: image, uploaderIsVisible: false });
@@ -34,6 +35,7 @@ export default class App extends React.Component {
         });
         axios.get("/getbio").then(({ data }) => {
             console.log("data in getbio: ", data);
+            this.setState({ bio: data.bio });
         });
     }
     render() {
