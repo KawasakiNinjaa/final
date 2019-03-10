@@ -16,7 +16,10 @@ export default class App extends React.Component {
         this.setBio = this.setBio.bind(this);
     }
     showUploader() {
-        this.setState({ uploaderIsVisible: true });
+        //check if it's opened
+        const { uploaderIsVisible } = this.state;
+        //and toggle its value
+        this.setState({ uploaderIsVisible: !uploaderIsVisible });
         console.log("I am showUploader");
     }
 
@@ -54,7 +57,6 @@ export default class App extends React.Component {
                         showUploader={this.showUploader}
                     />
                 </div>
-                <h1> HI SO BASICALLY I'M APP.JS WUSSUP BRO </h1>
                 <Profile
                     first={this.state.first}
                     last={this.state.last}

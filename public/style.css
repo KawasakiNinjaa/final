@@ -53,8 +53,8 @@ button {
 }
 #uploadform {
     border: 1px solid black;
-    top: 20%;
-    left: 37%;
+    top: 13%;
+    left: 78%;
     background-image: linear-gradient(
         to bottom,
         #a5f6ec,
@@ -64,11 +64,10 @@ button {
         #f3fbfa
     );
     position: fixed;
-    height: 400px;
+    height: 1000px;
     width: 400px;
 }
 #app {
-    text-align: center;
 }
 #appbar {
     display: block;
@@ -88,6 +87,7 @@ button {
     display: inline-block;
     height: 100px;
     float: left;
+    left: 250px;
 }
 #profilepic {
     display: inline-block;
@@ -98,6 +98,19 @@ button {
 }
 #profile-wrap {
     border: 1px solid black;
+    height: 500px;
+    display: flex;
+    flex-direction: row;
+}
+#profilepic2 {
+    position: relative;
+    left: 250px;
+    height: 200px;
+}
+#bio {
+    left: 250px;
+    position: relative;
+    top: 10px;
 }
 .wholecaroussel {
     display: block;

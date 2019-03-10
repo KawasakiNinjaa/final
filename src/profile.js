@@ -10,15 +10,21 @@ export default class Profile extends React.Component {
     render() {
         return (
             <div id="profile-wrap">
-                <h2> I am profile.js </h2>
-                <h1>
-                    Hello, {this.props.first} {this.props.last}!
-                </h1>
-                <BioEditor bio={this.props.bio} setBio={this.props.setBio} />
-                <ProfilePic
-                    image={this.props.image}
-                    showUploader={this.props.showUploader}
-                />
+                <div id="profilepic2">
+                    <ProfilePic
+                        image={this.props.image}
+                        showUploader={this.props.showUploader}
+                    />
+                </div>
+                <div id="bio">
+                    <h1>
+                        Hola, {this.props.first} {this.props.last}. What's up?
+                    </h1>
+                    <BioEditor
+                        bio={this.props.bio}
+                        setBio={this.props.setBio}
+                    />
+                </div>
             </div>
         );
     }

@@ -18,12 +18,19 @@ export default class BioEditor extends React.Component {
         axios.post("/setbio", { biotext }).then(({ data }) => {
             console.log("data in setbio: ", data.bio);
             this.props.setBio(data);
+            this.setState({ bioEditorIsVisible: false });
             // this.setState({ biotext });
         });
     }
+
     showBioEditor() {
         console.log("I am showBioEditor");
-        this.setState({ bioEditorIsVisible: true });
+        //chech if bioeditor is currently opened
+        const { bioEditorIsVisible } = this.state;
+        this.setState({
+            // toggle its value
+            bioEditorIsVisible: !bioEditorIsVisible
+        });
     }
     render() {
         return (
@@ -34,8 +41,6 @@ export default class BioEditor extends React.Component {
                 <h2> {this.props.bio}</h2>
                 {this.props.bio && (
                     <div>
-                        {" "}
-                        {this.props.bio},{" "}
                         <p onClick={this.showBioEditor}> e di t Your Bio </p>
                     </div>
                 )}
