@@ -22,7 +22,7 @@ exports.logIn = function logIn(email) {
 };
 
 exports.getUserById = function getUserById(id) {
-    let q = "SELECT id, first, last, img_url FROM users WHERE id= $1";
+    let q = "SELECT id, first, last, img_url, bio FROM users WHERE id= $1";
     let params = [id];
 
     return db.query(q, params);

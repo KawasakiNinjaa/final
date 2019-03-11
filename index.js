@@ -190,6 +190,16 @@ app.post("/setbio", (req, res) => {
     });
 });
 
+app.get("/api-user/:id", async (req, res) => {
+    if (req.params.id == req.session.userId) {
+        res.json({ match: true });
+    } else {
+        const userStuff = await db.getUserById(req.params.id);
+        console.log("userStuff: ", userStuff.rows[0]);
+        res.json(userStuff.rows[0]);
+    }
+});
+
 app.get("*", function(req, res) {
     if (!req.session.userId) {
         res.redirect("/welcome");

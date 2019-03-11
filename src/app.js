@@ -3,6 +3,8 @@ import axios from "./axios";
 import ProfilePic from "./profilepic";
 import Uploader from "./uploader";
 import Profile from "./profile";
+import { BrowserRouter, Route } from "react-router-dom";
+import OtherProfile from "./otherprofile";
 
 export default class App extends React.Component {
     constructor(props) {
@@ -48,26 +50,48 @@ export default class App extends React.Component {
         }
         return (
             <div id="app">
-                <div id="appbar">
-                    <img id="logoinapp" src="logo.jpg" />
-                    <ProfilePic
-                        image={this.state.img_url}
-                        first={this.state.first}
-                        last={this.state.last}
-                        showUploader={this.showUploader}
-                    />
-                </div>
-                <Profile
-                    first={this.state.first}
-                    last={this.state.last}
-                    image={this.state.img_url}
-                    showUploader={this.showUploader}
-                    bio={this.state.bio}
-                    setBio={this.setBio}
-                />
-                {this.state.uploaderIsVisible && (
-                    <Uploader setImage={this.setImage} />
-                )}
+                <BrowserRouter>
+                    <div>
+                        <Route
+                            exact
+                            path="/"
+                            render={() => (
+                                <div>
+                                    <div id="appbar">
+                                        <img id="logoinapp" src="logo.jpg" />
+                                        <ProfilePic
+                                            image={this.state.img_url}
+                                            first={this.state.first}
+                                            last={this.state.last}
+                                            showUploader={this.showUploader}
+                                        />
+                                    </div>
+                                    <Profile
+                                        first={this.state.first}
+                                        last={this.state.last}
+                                        image={this.state.img_url}
+                                        showUploader={this.showUploader}
+                                        bio={this.state.bio}
+                                        setBio={this.setBio}
+                                    />
+                                    {this.state.uploaderIsVisible && (
+                                        <Uploader setImage={this.setImage} />
+                                    )}
+                                </div>
+                            )}
+                        />
+                        <Route
+                            path="/user/:id"
+                            render={props => (
+                                <OtherProfile
+                                    key={props.match.url}
+                                    match={props.match}
+                                    history={props.history}
+                                />
+                            )}
+                        />
+                    </div>
+                </BrowserRouter>
             </div>
         );
     }
