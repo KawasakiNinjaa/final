@@ -34,14 +34,16 @@ export default class BioEditor extends React.Component {
     }
     render() {
         return (
-            <div>
+            <div className="bioeditor">
                 {!this.props.bio && (
-                    <p onClick={this.showBioEditor}> add a fucking bio</p>
+                    <button id="addbio" onClick={this.showBioEditor}>
+                        addBio
+                    </button>
                 )}
                 <h2> {this.props.bio}</h2>
                 {this.props.bio && (
                     <div>
-                        <p onClick={this.showBioEditor}> e di t Your Bio </p>
+                        <button onClick={this.showBioEditor}>editBio</button>
                     </div>
                 )}
 

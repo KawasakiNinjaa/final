@@ -21,18 +21,23 @@ export default class OtherProfile extends React.Component {
     }
     render() {
         return (
-            <div>
-                <h2> I am OtherProfile </h2>
-                <img
-                    src={this.state.img_url}
-                    alt={`${this.state.first} ${this.state.last}`}
-                />
-
-                <h2>
-                    {this.state.first} {this.state.last}
-                </h2>
-                <p> {this.state.bio}</p>
-                <h2 />
+            <div id="otherprofile1">
+                <h2> o th e r m e m B e r s </h2>
+                <div id="otherprofile2">
+                    {!this.state.img_url && <img src="/default.jpg" />}
+                    {this.state.img_url && (
+                        <img
+                            src={this.state.img_url}
+                            alt={`${this.state.first} ${this.state.last}`}
+                        />
+                    )}
+                    <div>
+                        <h1>
+                            {this.state.first} {this.state.last}
+                        </h1>
+                        <p> {this.state.bio}</p>
+                    </div>
+                </div>
             </div>
         );
     }

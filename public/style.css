@@ -112,6 +112,16 @@ button {
     position: relative;
     top: 10px;
 }
+#otherprofile1 {
+    text-align: center;
+}
+#otherprofile2 {
+    width: auto;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
 .wholecaroussel {
     display: block;
 }

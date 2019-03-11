@@ -52,20 +52,20 @@ export default class App extends React.Component {
             <div id="app">
                 <BrowserRouter>
                     <div>
+                        <div id="appbar">
+                            <img id="logoinapp" src="/logo.jpg" />
+                            <ProfilePic
+                                image={this.state.img_url}
+                                first={this.state.first}
+                                last={this.state.last}
+                                showUploader={this.showUploader}
+                            />
+                        </div>
                         <Route
                             exact
                             path="/"
                             render={() => (
                                 <div>
-                                    <div id="appbar">
-                                        <img id="logoinapp" src="logo.jpg" />
-                                        <ProfilePic
-                                            image={this.state.img_url}
-                                            first={this.state.first}
-                                            last={this.state.last}
-                                            showUploader={this.showUploader}
-                                        />
-                                    </div>
                                     <Profile
                                         first={this.state.first}
                                         last={this.state.last}
