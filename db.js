@@ -48,3 +48,19 @@ exports.getBioById = function getBioById(userId) {
 
     return db.query(q, params);
 };
+
+exports.getInitialStatus = function getInitialStatus(myId, otherId) {
+    let q = `SELECT * FROM friendships
+     WHERE (receiver=$1 AND sender=$2)
+     OR (receiver=$2 AND sender=$1)`;
+    let params = [myId, otherId];
+
+    return db.query(q, params);
+};
+
+exports.sendFriendReq = function sendFriendReq(otherId, myId) {
+    let q = `INSERT INTO friendships (receiver, sender) VALUES($1, $2) RETURNING *`;
+    let params = [otherId, myId];
+
+    return db.query(q, params);
+};

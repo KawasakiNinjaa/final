@@ -36,7 +36,8 @@ export default class App extends React.Component {
     componentDidMount() {
         axios.get("/user").then(({ data }) => {
             console.log("data in get/user: ", data);
-            this.setState(data); // we res.json from the server and pass it to state, in order to this.state.whatever later and use it in our component
+            this.setState({ myId: data[0] });
+            this.setState(data[1]); // we res.json from the server and pass it to state, in order to this.state.whatever later and use it in our component
         });
         axios.get("/getbio").then(({ data }) => {
             console.log("data in getbio: ", data);
@@ -84,6 +85,7 @@ export default class App extends React.Component {
                             path="/user/:id"
                             render={props => (
                                 <OtherProfile
+                                    myId={this.state.myId}
                                     key={props.match.url}
                                     match={props.match}
                                     history={props.history}

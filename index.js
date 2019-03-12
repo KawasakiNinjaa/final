@@ -150,7 +150,7 @@ app.get("/user", requireLoggedInUser, (req, res) => {
         // if (!user.image_url) {
         //     user.image_url = "default.jpg";
         // }
-        res.json(rows[0]);
+        res.json([req.session.userId, rows[0]]);
     });
 });
 
@@ -198,6 +198,25 @@ app.get("/api-user/:id", async (req, res) => {
         console.log("userStuff: ", userStuff.rows[0]);
         res.json(userStuff.rows[0]);
     }
+});
+
+app.get("/get-initial-status/:id", async (req, res) => {
+    let myId = req.session.userId;
+    let otherId = req.params.id;
+    console.log("get-inital-status running");
+    const initialStatus = await db.getInitialStatus(myId, otherId);
+    console.log("initialStatus: ", initialStatus);
+    res.json(initialStatus.rows[0]);
+
+    //db query to gwt initial status of friendship, res.json the status to the friendbutton component
+});
+
+app.post("/new-friendship-status", async (req, res) => {
+    let myId = req.session.userId;
+    let otherUserId = req.body.otherUserId;
+    const sendReq = await db.sendFriendReq(otherUserId, myId);
+    console.log("sendReq: ", sendReq);
+    res.json(sendReq.rows[0]);
 });
 
 app.get("*", function(req, res) {
