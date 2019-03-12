@@ -19,12 +19,18 @@ export default class FriendButton extends React.Component {
         console.log("initialStatus: ", initialStatus);
         if (!initialStatus.data) {
             this.setState({ buttonText: "send friend request" });
-        } else if (initialStatus.data.receiver == otherUserId) {
-            this.setState({ buttonText: "cancel request" });
-        } else if (initialStatus.data.receiver == myId) {
-            this.setState({ buttonText: "accept request" });
         } else if (initialStatus.data.accepted) {
-            this.setState({ buttonText: "end friendship" });
+            this.setState({ buttonText: "unfriend" });
+        } else if (
+            !initialStatus.data.accepted &&
+            initialStatus.data.receiver == otherUserId
+        ) {
+            this.setState({ buttonText: "cancel request" });
+        } else if (
+            !initialStatus.data.accepted &&
+            initialStatus.data.receiver == !otherUserId
+        ) {
+            this.setState({ buttonText: "accept request" });
         }
         // if (!initialStatus.data.friendship) {
         //     this.setState({
@@ -50,20 +56,20 @@ export default class FriendButton extends React.Component {
                 action: "add",
                 otherId: otherUserId
             });
+            this.setState({ buttonText: "cancel request" });
             console.log("newStatus: ", newStatus);
-        } else if (
-            buttonText == "cancel request" ||
-            buttonText == "end friendship"
-        ) {
+        } else if (buttonText == "cancel request" || buttonText == "unfriend") {
             const cancelReq = await axios.post("/new-friendship-status", {
                 action: "cancel",
                 otherId: otherUserId
             });
+            this.setState({ buttonText: "send friend request" });
         } else if (buttonText == "accept request") {
             const acceptReq = await axios.post("/new-friendship-status", {
                 action: "accept",
                 otherId: otherUserId
             });
+            this.setState({ buttonText: "unfriend" });
         }
 
         //IF the burron said "send friend request" when the button was clicked ---POST - INSERT query
