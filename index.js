@@ -212,11 +212,16 @@ app.get("/get-initial-status/:id", async (req, res) => {
 });
 
 app.post("/new-friendship-status", async (req, res) => {
+    let otherId = req.body.otherId;
     let myId = req.session.userId;
-    let otherUserId = req.body.otherUserId;
-    const sendReq = await db.sendFriendReq(otherUserId, myId);
-    console.log("sendReq: ", sendReq);
-    res.json(sendReq.rows[0]);
+
+    if (req.body.action == "add") {
+        const sendReq = await db.sendFriendReq(otherId, myId);
+        console.log("sendReq: ", sendReq);
+        res.json(sendReq.rows[0]);
+    } else if (req.body.action == "cancel") {
+        const cancelReq = await db.cancelReq(myId, otherId);
+    }
 });
 
 app.get("*", function(req, res) {

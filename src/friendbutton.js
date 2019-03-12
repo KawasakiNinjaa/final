@@ -40,15 +40,22 @@ export default class FriendButton extends React.Component {
     async handleClick() {
         let buttonText = this.state.buttonText;
         let otherUserId = this.props.otherUserId;
+
         // this.setState({
         //     buttonText: "other"
         // });
         if (buttonText == "send friend request") {
             console.log("i am handleClick");
             const newStatus = await axios.post("/new-friendship-status", {
-                otherUserId
+                action: "add",
+                otherId: otherUserId
             });
             console.log("newStatus: ", newStatus);
+        } else if (buttonText == "cancel request") {
+            const cancelReq = await axios.post("/new-friendship-status", {
+                action: "cancel",
+                otherId: otherUserId
+            });
         }
 
         //IF the burron said "send friend request" when the button was clicked ---POST - INSERT query

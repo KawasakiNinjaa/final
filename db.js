@@ -64,3 +64,10 @@ exports.sendFriendReq = function sendFriendReq(otherId, myId) {
 
     return db.query(q, params);
 };
+
+exports.cancelReq = function cancelReq(myId, otherId) {
+    let q = `DELETE FROM friendships WHERE (receiver=$2 AND sender=$1) OR (receiver=$1 AND sender=$2)`;
+    let params = [myId, otherId];
+
+    return db.query(q, params);
+};
