@@ -28,7 +28,7 @@ export default class FriendButton extends React.Component {
             this.setState({ buttonText: "cancel request" });
         } else if (
             !initialStatus.data.accepted &&
-            initialStatus.data.receiver == !otherUserId
+            initialStatus.data.receiver == myId
         ) {
             this.setState({ buttonText: "accept request" });
         }
@@ -57,6 +57,7 @@ export default class FriendButton extends React.Component {
                 otherId: otherUserId
             });
             this.setState({ buttonText: "cancel request" });
+
             console.log("newStatus: ", newStatus);
         } else if (buttonText == "cancel request" || buttonText == "unfriend") {
             const cancelReq = await axios.post("/new-friendship-status", {
