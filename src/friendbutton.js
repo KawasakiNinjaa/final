@@ -51,9 +51,17 @@ export default class FriendButton extends React.Component {
                 otherId: otherUserId
             });
             console.log("newStatus: ", newStatus);
-        } else if (buttonText == "cancel request") {
+        } else if (
+            buttonText == "cancel request" ||
+            buttonText == "end friendship"
+        ) {
             const cancelReq = await axios.post("/new-friendship-status", {
                 action: "cancel",
+                otherId: otherUserId
+            });
+        } else if (buttonText == "accept request") {
+            const acceptReq = await axios.post("/new-friendship-status", {
+                action: "accept",
                 otherId: otherUserId
             });
         }

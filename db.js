@@ -71,3 +71,10 @@ exports.cancelReq = function cancelReq(myId, otherId) {
 
     return db.query(q, params);
 };
+
+exports.acceptReq = function acceptReq(myId, otherId) {
+    let q = `UPDATE friendships SET accepted= true WHERE (receiver=$2 AND sender=$1) OR (receiver=$1 AND sender=$2)`;
+    let params = [myId, otherId];
+
+    return db.query(q, params);
+};
