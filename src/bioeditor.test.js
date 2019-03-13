@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "./axios";
 import BioEditor from "./bioeditor";
-import { test, shallow } from "enzyme";
+import { shallow } from "enzyme";
 import jest from "jest";
 
 jest.mock("./axios");
