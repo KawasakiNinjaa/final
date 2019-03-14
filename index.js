@@ -228,6 +228,13 @@ app.post("/new-friendship-status", async (req, res) => {
     }
 });
 
+app.get("/friends-wannabes", async (req, res) => {
+    let myId = req.session.userId;
+    const friendsAndWannabes = await db.getFriendsAndWannabes(myId);
+    console.log("friendsAndWannabes: ", friendsAndWannabes.rows);
+    res.json(friendsAndWannabes.rows);
+});
+
 app.get("*", function(req, res) {
     if (!req.session.userId) {
         res.redirect("/welcome");

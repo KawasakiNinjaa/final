@@ -78,3 +78,17 @@ exports.acceptReq = function acceptReq(myId, otherId) {
 
     return db.query(q, params);
 };
+
+exports.getFriendsAndWannabes = function getFriendsAndWannabes(myId) {
+    let q = `
+    SELECT users.id, users.first, users.last, users.img_url, accepted
+    FROM friendships
+    JOIN users
+    ON (accepted = false AND receiver= $1 AND sender= users.id)
+    OR (accepted = true AND receiver= $1 AND sender= users.id)
+    OR (accepted = true AND sender= $1 AND receiver= users.id)
+`;
+    let params = [myId];
+
+    return db.query(q, params);
+};
