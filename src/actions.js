@@ -7,7 +7,7 @@ export async function getFriendsAndWannabes() {
     console.log("friendsAndWannabes: ", friendsAndWannabes.data);
     return {
         type: "GET_FRIENDS_WANNABES",
-        friendsWannabes: [friendsAndWannabes.data]
+        friendsWannabes: friendsAndWannabes.data
     };
     //axios GET req to get friends and receiveFriendsWannabes.
     // RES = return object with type key and all the list
