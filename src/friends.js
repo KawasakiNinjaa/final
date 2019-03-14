@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getFriendsAndWannabes } from "./actions";
+import { getFriendsAndWannabes, unfriend, accept } from "./actions";
 
 export class Friends extends React.Component {
     constructor() {
@@ -15,6 +15,7 @@ export class Friends extends React.Component {
         if (!this.props.friends && !this.props.wannabes) {
             return null;
         }
+
         const friends = this.props.friends;
         const wannabes = this.props.wannabes;
         const friendList = (
@@ -26,6 +27,14 @@ export class Friends extends React.Component {
                             {" "}
                             {friend.first} {friend.last}
                         </h3>
+                        <button
+                            onClick={() =>
+                                this.props.dispatch(unfriend(friend.id))
+                            }
+                        >
+                            {" "}
+                            unfriend{" "}
+                        </button>
                     </div>
                 ))}
             </div>
@@ -39,6 +48,14 @@ export class Friends extends React.Component {
                             {" "}
                             {wannabe.first} {wannabe.last}{" "}
                         </h3>
+                        <button
+                            onClick={() =>
+                                this.props.dispatch(accept(wannabe.id))
+                            }
+                        >
+                            {" "}
+                            accept request
+                        </button>
                     </div>
                 ))}
             </div>

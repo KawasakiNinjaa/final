@@ -221,6 +221,7 @@ app.post("/new-friendship-status", async (req, res) => {
         res.json(sendReq.rows[0]);
     } else if (req.body.action == "cancel") {
         const cancelReq = await db.cancelReq(myId, otherId);
+        console.log("cancelReq: ", cancelReq);
         res.json({ success: true });
     } else if (req.body.action == "accept") {
         const acceptReq = await db.acceptReq(myId, otherId);

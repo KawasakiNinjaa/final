@@ -13,3 +13,25 @@ export async function getFriendsAndWannabes() {
     // RES = return object with type key and all the list
     //you need friends to see that
 }
+
+export async function unfriend(otherId) {
+    const unfriended = await axios.post("/new-friendship-status", {
+        action: "cancel",
+        otherId: otherId
+    });
+    console.log("unfriended: ", unfriended);
+    return {
+        type: "UNFRIEND"
+    };
+}
+export async function accept(otherId) {
+    const accepted = await axios.post("/new-friendship-status", {
+        action: "accept",
+        otherId: otherId
+    });
+    console.log("accepted: ", accepted);
+
+    return {
+        type: "ACCEPT"
+    };
+}
