@@ -21,7 +21,8 @@ export async function unfriend(otherId) {
     });
     console.log("unfriended: ", unfriended);
     return {
-        type: "UNFRIEND"
+        type: "UNFRIEND",
+        otherId: otherId
     };
 }
 export async function accept(otherId) {
@@ -32,6 +33,7 @@ export async function accept(otherId) {
     console.log("accepted: ", accepted);
 
     return {
-        type: "ACCEPT"
+        type: "ACCEPT",
+        otherId: otherId
     };
 }

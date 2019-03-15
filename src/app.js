@@ -93,14 +93,7 @@ export default class App extends React.Component {
                                 />
                             )}
                         />
-                        <Route
-                            path="/friends"
-                            render={() => (
-                                <div>
-                                    <Friends />
-                                </div>
-                            )}
-                        />
+                        <Route path="/friends" render={() => <Friends />} />
                     </div>
                 </BrowserRouter>
             </div>

@@ -8,7 +8,8 @@ export class Friends extends React.Component {
     }
     componentDidMount() {
         this.props.dispatch(getFriendsAndWannabes());
-        //DISPATCH and pass the action function (receiveFriendsWannabes)
+
+        //DISPATCH and pass the action function ()
     }
     render() {
         console.log("wannabes and friends: ", this.props);
@@ -105,7 +106,7 @@ export class Friends extends React.Component {
 }
 
 const mapStateToProps = state => {
-    console.log("global state in Friends: ", state.friendsWannabes);
+    console.log("global state in Friends: ", state);
 
     return {
         friends:

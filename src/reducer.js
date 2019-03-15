@@ -4,12 +4,21 @@ export default function reducer(state = {}, action) {
         return state;
     }
     if (action.type == "UNFRIEND") {
-        state = { ...state.friendsWannabes };
+        const friendsWannabes = state.friendsWannabes.filter( friend => )
+        state = { ...state, friendWannabe };
         return state;
     }
     if (action.type == "ACCEPT") {
-        state = { ...state.friendsWannabes };
+        const friendsWannabes = state.friendsWannabes.map(friend => {
+            console.log("friend in friendsWannabes acc: ", friend);
+            if (friend.id == action.otherId) {
+                friend.accepted = true;
+            }
+            return friend;
+        });
+        console.log("friendsWannabes in accepted red: ", friendsWannabes);
+        state = { ...state, friendsWannabes };
+        return state;
     }
-    //retrn new state object that contains a property called friendsWannabes whose value is the array we got back from the server
     return state;
 }
