@@ -25,6 +25,7 @@ export async function unfriend(otherId) {
         otherId: otherId
     };
 }
+
 export async function accept(otherId) {
     const accepted = await axios.post("/new-friendship-status", {
         action: "accept",

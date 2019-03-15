@@ -9,7 +9,11 @@ export default function ProfilePic(props) {
                 id="profilepic"
                 src={image}
                 alt={`${props.first} ${props.last}`}
-                onClick={props.showUploader}
+                onClick={
+                    props.showUploader
+                        ? props.showUploader
+                        : (props.showUploader = null)
+                }
             />
         </div>
     );

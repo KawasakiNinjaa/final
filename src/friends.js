@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { getFriendsAndWannabes, unfriend, accept } from "./actions";
+import { Link } from "react-router-dom";
 
 export class Friends extends React.Component {
     constructor() {
@@ -11,6 +12,7 @@ export class Friends extends React.Component {
 
         //DISPATCH and pass the action function ()
     }
+
     render() {
         console.log("wannabes and friends: ", this.props);
         if (!this.props.friends && !this.props.wannabes) {
@@ -22,8 +24,11 @@ export class Friends extends React.Component {
         const friendList = (
             <div id="friends">
                 {friends.map(friend => (
-                    <div key={friend.id} id="friend">
-                        <img src={friend.img_url} />
+                    <div key={friend.id} className="friend">
+                        <Link to={`/user/${friend.id}`}>
+                            {" "}
+                            <img src={friend.img_url} />{" "}
+                        </Link>
                         <h3>
                             {" "}
                             {friend.first} {friend.last}
@@ -44,8 +49,11 @@ export class Friends extends React.Component {
         const wannabeList = (
             <div id="wannabes">
                 {wannabes.map(wannabe => (
-                    <div key={wannabe.id} id="friend">
-                        <img src={wannabe.img_url} />
+                    <div key={wannabe.id} className="friend">
+                        <Link to={`/user/${wannabe.id}`}>
+                            {" "}
+                            <img src={wannabe.img_url} />{" "}
+                        </Link>
                         <h3>
                             {" "}
                             {wannabe.first} {wannabe.last}{" "}
@@ -71,8 +79,7 @@ export class Friends extends React.Component {
         );
 
         return (
-            <div>
-                <h1> friends component hallo </h1>
+            <div id="friends-wrap">
                 <div id="friendlist">
                     <h2> your friends </h2>
                     {friendList}

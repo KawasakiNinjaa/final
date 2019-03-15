@@ -3,7 +3,7 @@ import axios from "./axios";
 import ProfilePic from "./profilepic";
 import Uploader from "./uploader";
 import Profile from "./profile";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Link } from "react-router-dom";
 import OtherProfile from "./otherprofile";
 import Friends from "./friends";
 
@@ -56,12 +56,14 @@ export default class App extends React.Component {
                     <div>
                         <div id="appbar">
                             <img id="logoinapp" src="/logo.jpg" />
-                            <ProfilePic
-                                image={this.state.img_url}
-                                first={this.state.first}
-                                last={this.state.last}
-                                showUploader={this.showUploader}
-                            />
+                            <Link to="/">
+                                <ProfilePic
+                                    image={this.state.img_url}
+                                    first={this.state.first}
+                                    last={this.state.last}
+                                    showUploader={this.showUploader}
+                                />{" "}
+                            </Link>
                         </div>
                         <Route
                             exact
