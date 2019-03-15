@@ -4,8 +4,10 @@ export default function reducer(state = {}, action) {
         return state;
     }
     if (action.type == "UNFRIEND") {
-        const friendsWannabes = state.friendsWannabes.filter( friend => )
-        state = { ...state, friendWannabe };
+        const friendsWannabes = state.friendsWannabes.filter(
+            friend => friend.id !== action.otherId
+        );
+        state = { ...state, friendsWannabes };
         return state;
     }
     if (action.type == "ACCEPT") {
