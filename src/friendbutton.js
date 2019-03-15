@@ -32,24 +32,11 @@ export default class FriendButton extends React.Component {
         ) {
             this.setState({ buttonText: "accept request" });
         }
-        // if (!initialStatus.data.friendship) {
-        //     this.setState({
-        //         buttonText: "send friend request"
-        //     });
-        // } else if (!initialStatus.data[0].accepted) {
-        //     this.setState({ buttonText: "cancel request" });
-        // }
-        //if we get a res from server
-        // if we don't = users are not friends = button "send friend request"
-        //if we did get data from db- depending on the res = cancel req/ accept friendship/ end friendship
     }
     async handleClick() {
         let buttonText = this.state.buttonText;
         let otherUserId = this.props.otherUserId;
 
-        // this.setState({
-        //     buttonText: "other"
-        // });
         if (buttonText == "send friend request") {
             console.log("i am handleClick");
             const newStatus = await axios.post("/new-friendship-status", {

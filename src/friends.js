@@ -40,6 +40,7 @@ export class Friends extends React.Component {
                 ))}
             </div>
         );
+        //since cancel and unfriend will trigger the same query in the db, I am using unfriend as cancel req bc it's technically doing the same.
         const wannabeList = (
             <div id="wannabes">
                 {wannabes.map(wannabe => (
@@ -56,6 +57,13 @@ export class Friends extends React.Component {
                         >
                             {" "}
                             accept request
+                        </button>
+                        <button
+                            onClick={() =>
+                                this.props.dispatch(unfriend(wannabe.id))
+                            }
+                        >
+                            cancel request
                         </button>
                     </div>
                 ))}
@@ -75,32 +83,6 @@ export class Friends extends React.Component {
                     {wannabeList}
                 </div>
             </div>
-            // <div>
-            //     <h2> These guys wanna friends with you</h2>
-            //     <img
-            //         src={this.props.wannabes.img_url}
-            //         alt={`${this.props.wannabes.first} ${
-            //             this.props.wannabes.last
-            //         }`}
-            //     />
-            //     <h3>
-            //         {" "}
-            //         {this.props.wannabes.first}{" "}
-            //         {this.props.wannabes.last}
-            //     </h3>
-            // </div>
-            // <div>
-            //     <h2> my friends</h2>
-            //     <img
-            //         src={this.props.friends.img_url}
-            //         alt={`${this.props.friends.first} ${
-            //             this.props.friends.last
-            //         }`}
-            //     />
-            //     <h3>
-            //         {" "}
-            //         {this.props.friends.first} {this.props.friends.last}
-            //     </h3>
         );
     }
 }
