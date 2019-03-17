@@ -34,7 +34,7 @@ export default class BioEditor extends React.Component {
     }
     render() {
         return (
-            <div className="bioeditor">
+            <div id="bioeditor">
                 {!this.props.bio && (
                     <button id="addbio" onClick={this.showBioEditor}>
                         addBio
@@ -52,9 +52,10 @@ export default class BioEditor extends React.Component {
                         <textarea
                             name="biotext"
                             rows="5"
-                            columns="25"
+                            columns="30"
                             onChange={this.handleChange}
                         />
+                        <br />
                         <button
                             onClick={() => {
                                 this.update(this.biotext);

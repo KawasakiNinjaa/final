@@ -35,11 +35,11 @@ export default class Login extends React.Component {
         return (
             <div>
                 <div id="loginBar">
-                    <img id="loginLogo" src="logo.jpg" />
+                    <img id="loginLogo" src="logo2.png" />
                     <div id="loginform">
                         {this.state.error && (
                             <div className="error">
-                                <p> Oops!</p>{" "}
+                                <p> Oops!, something does not match.</p>{" "}
                             </div>
                         )}
                         <div id="loginform1">
@@ -70,32 +70,12 @@ export default class Login extends React.Component {
                         </div>
                         <br />
                         <p id="newhere">
-                            new here? <Link to="/signup">join us! </Link>
+                            new here? <Link to="/signup">join Coagula! </Link>
                         </p>
                     </div>
                 </div>
 
                 <Caroussel />
-                <h1>
-                    what about all this space what about all this space what
-                    about all this space what about all this space what about
-                    all this space what about all this space what about all this
-                    space what about all this space what about all this space
-                    what about all this space what about all this space what
-                    about all this space what about all this space what about
-                    all this space what about all this space what about all this
-                    space what about all this space what about all this space
-                    what about all this space what about all this space what
-                    about all this space what about all this space what about
-                    all this space what about all this space what about all this
-                    space what about all this space what about all this space
-                    what about all this space what about all this space what
-                    about all this space what about all this space what about
-                    all this space what about all this space what about all this
-                    space what about all this space what about all this space
-                    what about all this space what about all this space what
-                    about all this space what about all this space
-                </h1>
             </div>
         );
     }

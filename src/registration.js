@@ -34,48 +34,56 @@ export default class Registration extends React.Component {
     }
     render() {
         return (
-            //{we need to make a fn to
-            <div id="registration">
-                <img src="logo.jpg" />
-                <h2> c r e a t e A n e w A c c o u n t </h2>
-                {this.state.error && (
-                    <div className="error">
-                        <p> Oops! </p>
+            <div id="registration-wrap">
+                <h1 id="welcometo"> Join Coagula and make things happen.</h1>
+                <div id="registration">
+                    <img src="logo.png" />
+                    <div id="registration-form">
+                        <h2> c r e a t e A n e w A c c o u n t </h2>
+                        {this.state.error && (
+                            <div className="error">
+                                <p>
+                                    {" "}
+                                    Oops!, something went wrong. Please try
+                                    again.{" "}
+                                </p>
+                            </div>
+                        )}
+                        <input
+                            name="first"
+                            onChange={this.handleChange}
+                            placeholder="First Name"
+                        />
+                        <br />
+                        <br />
+                        <input
+                            name="last"
+                            onChange={this.handleChange}
+                            placeholder="Last Name"
+                        />
+                        <br />
+                        <br />
+                        <input
+                            name="email"
+                            onChange={this.handleChange}
+                            placeholder="e-mail"
+                        />
+                        <br />
+                        <br />
+                        <input
+                            type="password"
+                            name="password"
+                            onChange={this.handleChange}
+                            placeholder="password"
+                        />
+                        <br />
+                        <br />
+                        <button onClick={this.submit}> SIGN UP </button>
+                        <p>
+                            Already a member? <Link to="/">Log in here </Link>
+                        </p>
                     </div>
-                )}
-                <input
-                    name="first"
-                    onChange={this.handleChange}
-                    placeholder="First Name"
-                />
-                <br />
-                <br />
-                <input
-                    name="last"
-                    onChange={this.handleChange}
-                    placeholder="Last Name"
-                />
-                <br />
-                <br />
-                <input
-                    name="email"
-                    onChange={this.handleChange}
-                    placeholder="e-mail"
-                />
-                <br />
-                <br />
-                <input
-                    type="password"
-                    name="password"
-                    onChange={this.handleChange}
-                    placeholder="password"
-                />
-                <br />
-                <br />
-                <button onClick={this.submit}> SIGN UP </button>
-                <p>
-                    Already a member? <Link to="/">Log in here </Link>
-                </p>
+                </div>
             </div>
         );
     }

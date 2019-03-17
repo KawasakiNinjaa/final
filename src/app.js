@@ -55,7 +55,7 @@ export default class App extends React.Component {
                 <BrowserRouter>
                     <div>
                         <div id="appbar">
-                            <img id="logoinapp" src="/logo.jpg" />
+                            <img id="logoinapp" src="/logo.png" />
                             <Link to="/">
                                 <ProfilePic
                                     image={this.state.img_url}
