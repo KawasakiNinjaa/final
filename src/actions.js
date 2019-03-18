@@ -48,14 +48,16 @@ export async function onlineUsers(data) {
 }
 
 export async function userJoined(data) {
+    console.log("data in userJoined: ", data);
     return {
         type: "USER_JOINED",
         user: data
     };
 }
 export async function userLeft(data) {
+    console.log("data in userLeft: ", data);
     return {
         type: "USER_LEFT",
-        user: data
+        id: data
     };
 }

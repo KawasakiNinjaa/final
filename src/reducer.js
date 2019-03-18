@@ -27,15 +27,21 @@ export default function reducer(state = {}, action) {
         return state;
     }
     if (action.type == "USER_JOINED") {
+        console.log("action in user_joined", action);
         state = {
-            ...state.onlineUsers,
+            ...state,
             onlineUsers: [...state.onlineUsers, action.user]
         };
         return state;
     }
     if (action.type == "USER_LEFT") {
-        state = { ...state, onlineUsers: action.user };
-        return;
+        console.log("action in user_left: ", action);
+        const onlineUsers = state.onlineUsers.filter(
+            user => user.id !== action.id
+        );
+        console.log("onlineUsers in reducer: ", onlineUsers);
+        state = { ...state, onlineUsers };
+        return state;
     }
 
     return state;

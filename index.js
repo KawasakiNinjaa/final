@@ -279,11 +279,11 @@ io.on("connection", async socket => {
     //It is possible for a single user to appear the list more than once. If a user has two tabs open, it will ahve 2 sockets. We need to remove the item from the list that has the matching socket id when 'disconnect' event occurs. If a user who has the site open in two tabs closes one of them, it should remain in the list of online users.
     const alreadyHere =
         Object.values(onlineUsers).filter(id => id != userId).length > 1;
-
+    console.log("onlineUsers before check: ", onlineUsers);
     if (!alreadyHere) {
         const newOnlineUser = await db.getUserById(userId);
         console.log("newOnline", newOnlineUser.rows);
-        socket.broadcast.emit("userJoined", newOnlineUser.rows);
+        socket.broadcast.emit("userJoined", newOnlineUser.rows[0]);
 
         // then(({ rows }) => {
         //     socket.broadcast.emit("userJoined", {
@@ -292,8 +292,12 @@ io.on("connection", async socket => {
         // });
     }
     socket.on("disconnect", () => {
-        console.log("");
         delete onlineUsers[socket.id];
+        const reallyGone = !Object.values(onlineUsers).includes(userId);
+        if (reallyGone) {
+            console.log("this user left: ", userId);
+            socket.broadcast.emit("userLeft", userId);
+        }
     });
 });
 // db.getUserById({
