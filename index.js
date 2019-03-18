@@ -243,6 +243,11 @@ app.get("/friends-wannabes", async (req, res) => {
     res.json(friendsAndWannabes.rows);
 });
 
+app.get("/logout", (req, res) => {
+    req.session = null;
+    res.redirect("/welcome");
+});
+
 app.get("*", function(req, res) {
     if (!req.session.userId) {
         res.redirect("/welcome");

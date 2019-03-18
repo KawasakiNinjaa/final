@@ -1,6 +1,5 @@
 import React from "react";
 import axios from "./axios";
-import ProfilePic from "./profilepic";
 import Uploader from "./uploader";
 import Profile from "./profile";
 import { BrowserRouter, Route, Link } from "react-router-dom";
@@ -57,14 +56,16 @@ export default class App extends React.Component {
                     <div>
                         <div id="appbar">
                             <img id="logoinapp" src="/logo.png" />
-                            <Link to="/">
-                                <ProfilePic
-                                    image={this.state.img_url}
-                                    first={this.state.first}
-                                    last={this.state.last}
-                                    showUploader={this.showUploader}
-                                />{" "}
-                            </Link>
+                            <a href="/logout">
+                                <img
+                                    id="logoutbutton"
+                                    src="https://img.icons8.com/cotton/64/000000/shutdown.png"
+                                />
+                            </a>
+                            <p>
+                                {" "}
+                                Hi, {this.state.first} {this.state.last}!{" "}
+                            </p>
                         </div>
                         <Route
                             exact

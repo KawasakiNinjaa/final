@@ -13,7 +13,7 @@ export class OnlineUsers extends React.Component {
         const onlineUsers = this.props.onlineUsers;
 
         const onlineUsersList = (
-            <div id="onlineusers">
+            <div id="onlineuserslist">
                 {onlineUsers.map(onlineUser => (
                     <div key={onlineUser.id}>
                         <Link to={`/user/${onlineUser.id}`}>
