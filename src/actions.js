@@ -49,11 +49,13 @@ export async function onlineUsers(data) {
 
 export async function userJoined(data) {
     return {
-        type: "USER_JOINED"
+        type: "USER_JOINED",
+        user: data
     };
 }
 export async function userLeft(data) {
     return {
-        type: "USER_LEFT"
+        type: "USER_LEFT",
+        user: data
     };
 }
