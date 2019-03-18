@@ -92,3 +92,15 @@ exports.getFriendsAndWannabes = function getFriendsAndWannabes(myId) {
 
     return db.query(q, params);
 };
+
+exports.getUsersByIds = function getUsersByIds(arrayOfIds) {
+    let q = `SELECT
+            id, first, last, img_url
+            FROM
+            users
+            WHERE
+            id= ANY($1)`;
+    let params = [arrayOfIds];
+
+    return db.query(q, params);
+};

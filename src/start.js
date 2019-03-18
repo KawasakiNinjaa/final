@@ -9,6 +9,11 @@ import reduxPromise from "redux-promise";
 import { composeWithDevTools } from "redux-devtools-extension";
 import reducer from "./reducer";
 import { Provider } from "react-redux";
+import { getSocket } from "./socket.js";
+
+// socket.emit("hi", {
+//     funky: "chicken"
+// });
 
 const store = createStore(
     reducer,
@@ -27,11 +32,12 @@ let elem;
 if (location.pathname == "/welcome") {
     elem = <Welcome />;
 } else {
-    elem = (
+    elem = (getSocket(store),
+    (
         <Provider store={store}>
             <App />
         </Provider>
-    );
+    ));
 }
 
 ReactDOM.render(

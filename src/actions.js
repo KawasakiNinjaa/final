@@ -38,3 +38,22 @@ export async function accept(otherId) {
         otherId: otherId
     };
 }
+
+export async function onlineUsers(data) {
+    console.log("data in onlineUsers", data);
+    return {
+        type: "ONLINE_USERS",
+        user: data
+    };
+}
+
+export async function userJoined(data) {
+    return {
+        type: "USER_JOINED"
+    };
+}
+export async function userLeft(data) {
+    return {
+        type: "USER_LEFT"
+    };
+}

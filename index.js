@@ -1,13 +1,21 @@
 const express = require("express");
 const app = express();
+const server = require("http").Server(app);
+const io = require("socket.io")(server, { origins: "localhost:8080" });
 const compression = require("compression");
-const cookieSession = require("cookie-session");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const db = require("./db");
 const s3 = require("./s3");
 const bcrypt = require("./bcrypt");
 const csurf = require("csurf");
+/// cookie set up for socket.io
+const cookieSession = require("cookie-session");
+const cookieSessionMiddleware = cookieSession({
+    //name: session
+    secret: `I'm always horny.`,
+    maxAge: 1000 * 60 * 60 * 24 * 14 //cookies last two weeks
+});
 
 var multer = require("multer");
 var uidSafe = require("uid-safe");
@@ -32,21 +40,20 @@ var uploader = multer({
     }
 });
 ///////////////////////////
-
+//use cookie setup for socket.io
 app.use(cookieParser());
-app.use(
-    cookieSession({
-        //name: session
-        secret: `I'm always horny.`,
-        maxAge: 1000 * 60 * 60 * 24 * 14 //cookies last two weeks
-    })
-);
+app.use(cookieSessionMiddleware);
 app.use(csurf());
+
+io.use(function(socket, next) {
+    cookieSessionMiddleware(socket.request, socket.request.res, next);
+});
 
 app.use(function(req, res, next) {
     res.cookie("mytoken", req.csrfToken());
     next();
 });
+//////
 app.use(bodyParser.json({}));
 
 app.use(express.static("./wintergreen-socialnetwork"));
@@ -244,6 +251,57 @@ app.get("*", function(req, res) {
     }
 });
 
-app.listen(8080, function() {
+//instead of app = server.listen = SOCKET.IO
+server.listen(8080, function() {
     console.log("I'm listening.");
 });
+
+//this will be the lsit of online users with socketid key and userid value
+const onlineUsers = {};
+
+io.on("connection", async socket => {
+    //disconnect them if 'socket.request.session' does not have their id
+    const { userId } = socket.request.session;
+    if (!userId) {
+        return socket.disconnect();
+    }
+
+    //here I create the key and assign the value
+    onlineUsers[socket.id] = userId; //the name of the property will be changing depending on the socketId of the user;
+
+    let onlineUsersIds = Object.values(onlineUsers);
+
+    //send the socket the list of online users (emit the `"onlineUsers"` event)
+    const onlineUsersStuff = await db.getUsersByIds(onlineUsersIds);
+    console.log("onlineUsersStuff: ", onlineUsersStuff);
+    socket.emit("onlineUsers", onlineUsersStuff.rows);
+
+    //It is possible for a single user to appear the list more than once. If a user has two tabs open, it will ahve 2 sockets. We need to remove the item from the list that has the matching socket id when 'disconnect' event occurs. If a user who has the site open in two tabs closes one of them, it should remain in the list of online users.
+    const alreadyHere =
+        Object.values(onlineUsers).filter(id => id != userId).length > 1;
+
+    if (!alreadyHere) {
+        const newOnlineUser = await db.getUserById(userId);
+        console.log("newOnline", newOnlineUser.rows);
+        socket.broadcast.emit("userJoined", newOnlineUser.rows);
+
+        // then(({ rows }) => {
+        //     socket.broadcast.emit("userJoined", {
+        //         user: rows[0]
+        //     });
+        // });
+    }
+    socket.on("disconnect", () => {
+        console.log("");
+        delete onlineUsers[socket.id];
+    });
+});
+// db.getUserById({
+//     Object.values(onlineUsers)
+// }).then(
+//         ({rows})=> {
+//             socket.emit('onlineUsers')
+//         }
+//     )
+
+// io.sockets.sockets[myId].emit("");

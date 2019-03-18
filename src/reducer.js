@@ -22,5 +22,16 @@ export default function reducer(state = {}, action) {
         state = { ...state, friendsWannabes };
         return state;
     }
+    if (action.type == "ONLINE_USERS") {
+        state = { ...state, onlineUsers: action.user };
+        return state;
+    }
+    if (action.type == "USER_JOINED") {
+        return;
+    }
+    if (action.type == "USER_LEFT") {
+        return;
+    }
+
     return state;
 }
