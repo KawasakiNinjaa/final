@@ -43,6 +43,10 @@ export default function reducer(state = {}, action) {
         state = { ...state, onlineUsers };
         return state;
     }
+    if (action.type == "CHATROOM_MESSAGES") {
+        state = { ...state, chatroomMessages: action.chatroom_messages };
+        return state;
+    }
 
     return state;
 }

@@ -104,3 +104,9 @@ exports.getUsersByIds = function getUsersByIds(arrayOfIds) {
 
     return db.query(q, params);
 };
+
+exports.getChatroomMessages = function getChatroomMessages() {
+    let q = `SELECT * FROM chatroom ORDER BY id DESC LIMIT 10`;
+
+    return db.query(q);
+};

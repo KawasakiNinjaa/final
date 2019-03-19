@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Link } from "react-router-dom";
 import OtherProfile from "./otherprofile";
 import Friends from "./friends";
 import OnlineUsers from "./onlineusers.js";
+import ChatRoom from "./chatroom";
 
 export default class App extends React.Component {
     constructor(props) {
@@ -102,6 +103,7 @@ export default class App extends React.Component {
                             path="/onlineusers"
                             render={() => <OnlineUsers />}
                         />
+                        <Route path="/chatroom" render={() => <ChatRoom />} />
                     </div>
                 </BrowserRouter>
             </div>

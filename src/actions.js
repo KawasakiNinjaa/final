@@ -61,3 +61,10 @@ export async function userLeft(data) {
         id: data
     };
 }
+
+export function chatroomMessages(data) {
+    return {
+        type: "CHATROOM_MESSAGES",
+        chatroom_messages: data
+    };
+}

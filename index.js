@@ -270,6 +270,10 @@ io.on("connection", async socket => {
     if (!userId) {
         return socket.disconnect();
     }
+    ///////////////////////////////////////////////////////
+    const arrayOfChatMessages = await db.getChatroomMessages();
+    console.log("arrayOfChatMessages: ", arrayOfChatMessages.rows);
+    io.sockets.emit("chatroomMessages", arrayOfChatMessages.rows);
 
     //here I create the key and assign the value
     onlineUsers[socket.id] = userId; //the name of the property will be changing depending on the socketId of the user;
@@ -278,7 +282,7 @@ io.on("connection", async socket => {
 
     //send the socket the list of online users (emit the `"onlineUsers"` event)
     const onlineUsersStuff = await db.getUsersByIds(onlineUsersIds);
-    console.log("onlineUsersStuff: ", onlineUsersStuff);
+    console.log("onlineUsersStuff: ", onlineUsersStuff.rows);
     socket.emit("onlineUsers", onlineUsersStuff.rows);
 
     //It is possible for a single user to appear the list more than once. If a user has two tabs open, it will ahve 2 sockets. We need to remove the item from the list that has the matching socket id when 'disconnect' event occurs. If a user who has the site open in two tabs closes one of them, it should remain in the list of online users.
@@ -304,7 +308,17 @@ io.on("connection", async socket => {
             socket.broadcast.emit("userLeft", userId);
         }
     });
+
+    //send the socket the array of chat messages and emits event to the front
+
+    socket.on("newChatMessage", async data => {
+        console.log("data in newChatMessage: ", data);
+
+        //db query to get info about the user who posted the message.
+        //store message in db
+    });
 });
+
 // db.getUserById({
 //     Object.values(onlineUsers)
 // }).then(
