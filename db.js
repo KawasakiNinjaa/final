@@ -106,7 +106,22 @@ exports.getUsersByIds = function getUsersByIds(arrayOfIds) {
 };
 
 exports.getChatroomMessages = function getChatroomMessages() {
-    let q = `SELECT * FROM chatroom ORDER BY id DESC LIMIT 10`;
+    let q = `SELECT users.first, users.last, users.img_url, chatroom.id, chatroom.comment, chatroom.user_id, chatroom.created_at
+    FROM chatroom
+    JOIN users
+    ON chatroom.user_id = users.id
+    ORDER BY ID ASC LIMIT 10
+    `;
 
     return db.query(q);
+};
+
+exports.newChatroomMessage = function newChatroomMessage(comment, userId) {
+    let q = `INSERT INTO
+            chatroom (comment, user_id)
+            VALUES ($1, $2)
+            RETURNING * `;
+    let params = [comment, userId];
+
+    return db.query(q, params);
 };

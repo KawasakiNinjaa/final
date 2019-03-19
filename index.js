@@ -270,10 +270,6 @@ io.on("connection", async socket => {
     if (!userId) {
         return socket.disconnect();
     }
-    ///////////////////////////////////////////////////////
-    const arrayOfChatMessages = await db.getChatroomMessages();
-    console.log("arrayOfChatMessages: ", arrayOfChatMessages.rows);
-    io.sockets.emit("chatroomMessages", arrayOfChatMessages.rows);
 
     //here I create the key and assign the value
     onlineUsers[socket.id] = userId; //the name of the property will be changing depending on the socketId of the user;
@@ -310,10 +306,28 @@ io.on("connection", async socket => {
     });
 
     //send the socket the array of chat messages and emits event to the front
+    const arrayOfChatMessages = await db.getChatroomMessages();
+    console.log("arrayOfChatMessages: ", arrayOfChatMessages.rows);
+    io.sockets.emit("chatroomMessages", arrayOfChatMessages.rows);
 
-    socket.on("newChatMessage", async data => {
+    socket.on("newChatroomMessage", async data => {
         console.log("data in newChatMessage: ", data);
+        const newMessage = await db.newChatroomMessage(data, userId);
+        console.log("newMessage: ", newMessage.rows);
+        const userStuff = await db.getUserById(userId);
+        console.log("userStuff: newchatmes ", userStuff.rows);
+        const newChatroomMessage = {
+            id: newMessage.rows[0].id,
+            user_id: newMessage.rows[0].user_id,
+            comment: newMessage.rows[0].comment,
+            created_at: newMessage.rows[0].created_at,
+            first: userStuff.rows[0].first,
+            last: userStuff.rows[0].last,
+            img_url: userStuff.rows[0].img_url
+        };
+        console.log("newChatroomMessage: ", newChatroomMessage);
 
+        io.sockets.emit("newChatroomMessage", newChatroomMessage);
         //db query to get info about the user who posted the message.
         //store message in db
     });

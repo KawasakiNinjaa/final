@@ -47,6 +47,15 @@ export default function reducer(state = {}, action) {
         state = { ...state, chatroomMessages: action.chatroom_messages };
         return state;
     }
+    if (action.type == "NEW_CHATROOM_MESSAGE") {
+        const chatroomMessages = [
+            ...state.chatroomMessages,
+            action.message_info
+        ];
+        state = { ...state, chatroomMessages };
+        console.log("state in new_chatroom_mesaage after assignment: ", state);
+        return state;
+    }
 
     return state;
 }

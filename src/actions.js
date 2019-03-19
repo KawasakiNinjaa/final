@@ -68,3 +68,11 @@ export function chatroomMessages(data) {
         chatroom_messages: data
     };
 }
+
+export function newChatroomMessage(data) {
+    console.log("data in newChatroomMessage: ", data);
+    return {
+        type: "NEW_CHATROOM_MESSAGE",
+        message_info: data
+    };
+}
