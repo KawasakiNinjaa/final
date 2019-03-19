@@ -110,7 +110,7 @@ exports.getChatroomMessages = function getChatroomMessages() {
     FROM chatroom
     JOIN users
     ON chatroom.user_id = users.id
-    ORDER BY ID ASC LIMIT 10
+    ORDER BY ID DESC LIMIT 10
     `;
 
     return db.query(q);

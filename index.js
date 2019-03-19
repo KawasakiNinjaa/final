@@ -289,12 +289,6 @@ io.on("connection", async socket => {
         const newOnlineUser = await db.getUserById(userId);
         console.log("newOnline", newOnlineUser.rows);
         socket.broadcast.emit("userJoined", newOnlineUser.rows[0]);
-
-        // then(({ rows }) => {
-        //     socket.broadcast.emit("userJoined", {
-        //         user: rows[0]
-        //     });
-        // });
     }
     socket.on("disconnect", () => {
         delete onlineUsers[socket.id];
@@ -308,14 +302,13 @@ io.on("connection", async socket => {
     //send the socket the array of chat messages and emits event to the front
     const arrayOfChatMessages = await db.getChatroomMessages();
     console.log("arrayOfChatMessages: ", arrayOfChatMessages.rows);
-    io.sockets.emit("chatroomMessages", arrayOfChatMessages.rows);
+    io.sockets.emit("chatroomMessages", arrayOfChatMessages.rows.reverse());
 
     socket.on("newChatroomMessage", async data => {
         console.log("data in newChatMessage: ", data);
         const newMessage = await db.newChatroomMessage(data, userId);
-        console.log("newMessage: ", newMessage.rows);
+        console.log("newMessage_: ", newMessage);
         const userStuff = await db.getUserById(userId);
-        console.log("userStuff: newchatmes ", userStuff.rows);
         const newChatroomMessage = {
             id: newMessage.rows[0].id,
             user_id: newMessage.rows[0].user_id,
@@ -325,11 +318,8 @@ io.on("connection", async socket => {
             last: userStuff.rows[0].last,
             img_url: userStuff.rows[0].img_url
         };
-        console.log("newChatroomMessage: ", newChatroomMessage);
 
         io.sockets.emit("newChatroomMessage", newChatroomMessage);
-        //db query to get info about the user who posted the message.
-        //store message in db
     });
 });
 
