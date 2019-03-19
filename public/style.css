@@ -112,12 +112,22 @@ button {
     float: left;
     left: 200px;
 }
-#profilepic {
-    display: inline-block;
+#appbar-options {
+    margin-top: 2rem;
+    position: relative;
+    display: flex;
+    flex-direction: row;
     float: right;
-    height: 100px;
-    margin-top: 10px;
-    margin-right: 150px;
+}
+#greeting {
+    margin-top: 4rem;
+    margin-right: 1rem;
+}
+#profilepic {
+    margin-top: 2rem;
+    display: inline-block;
+    height: 8rem;
+    border-radius: 30rem;
 }
 #profile-wrap {
     margin-top: 2.5rem;
@@ -172,6 +182,25 @@ button {
     max-height: 70%;
     border-radius: 50%;
 }
+#chat-container {
+}
+#chatroomMessagesList {
+    background-color: #6aa281;
+    height: 40rem;
+    width: 70rem;
+    overflow-y: scroll;
+}
+#chatroommessage {
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    border: 1px solid black;
+}
+#imginchat {
+    height: 3rem;
+    border-radius: 50rem;
+}
+/* 000000000000000000000000000000000000000000000000000000000000000000000000*/
 .wholecaroussel {
     display: block;
 }

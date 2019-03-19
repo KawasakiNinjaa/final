@@ -57,16 +57,18 @@ export default class App extends React.Component {
                     <div>
                         <div id="appbar">
                             <img id="logoinapp" src="/logo.png" />
-                            <a href="/logout">
-                                <img
-                                    id="logoutbutton"
-                                    src="https://img.icons8.com/cotton/64/000000/shutdown.png"
-                                />
-                            </a>
-                            <p>
-                                {" "}
-                                Hi, {this.state.first} {this.state.last}!{" "}
-                            </p>
+                            <div id="appbar-options">
+                                <a href="/logout">
+                                    <img
+                                        id="logoutbutton"
+                                        src="https://img.icons8.com/cotton/64/000000/shutdown.png"
+                                    />
+                                </a>
+                                <p id="greeting">
+                                    {" "}
+                                    Hi, {this.state.first} {this.state.last}!{" "}
+                                </p>
+                            </div>
                         </div>
                         <Route
                             exact

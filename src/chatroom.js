@@ -11,8 +11,7 @@ export class ChatRoom extends React.Component {
         }
     }
     componentDidUpdate() {
-        console.log("this.chatContainer: ", this.chatContainer);
-        this.chatContainer.scrollTop = "100px";
+        this.elem.scrollTop = this.elem.scrollHeight;
     }
     render() {
         if (!this.props.chatroomMessages) {
@@ -21,18 +20,28 @@ export class ChatRoom extends React.Component {
         const chatroomMessages = this.props.chatroomMessages;
 
         const chatroomMessagesList = (
-            <div id="chatroomMessagesList">
+            <div
+                id="chatroomMessagesList"
+                ref={elem => {
+                    this.elem = elem;
+                }}
+            >
                 {chatroomMessages.map(chatroomMessage => (
-                    <div key={chatroomMessage.id}>
+                    <div key={chatroomMessage.id} id="chatroommessage">
                         <Link to={`/user/${chatroomMessage.user_id}`}>
                             {" "}
-                            <img src={chatroomMessage.img_url} />
-                            <h6>
-                                {chatroomMessage.first} {chatroomMessage.last}{" "}
-                            </h6>
-                            <p> {chatroomMessage.created_at}</p>{" "}
+                            <img id="imginchat" src={chatroomMessage.img_url} />
                         </Link>
-                        <p> {chatroomMessage.comment} </p>
+                        <div>
+                            <div>
+                                <h6>
+                                    {chatroomMessage.first}{" "}
+                                    {chatroomMessage.last}{" "}
+                                    {chatroomMessage.created_at}{" "}
+                                </h6>
+                            </div>
+                            <p> {chatroomMessage.comment} </p>
+                        </div>
                     </div>
                 ))}
             </div>
@@ -41,13 +50,10 @@ export class ChatRoom extends React.Component {
         return (
             <div>
                 <h1> chat room</h1>
-                {chatroomMessagesList}
-                <div
-                    id="chat-container"
-                    ref={elem => (this.chatContainer = elem)}
-                />
-
-                <textarea onKeyDown={this.handleKeyDown} />
+                <div id="chat-container" className="chat-msg-container">
+                    {chatroomMessagesList}
+                    <textarea onKeyDown={this.handleKeyDown} />
+                </div>
             </div>
         );
     }

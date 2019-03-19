@@ -18,7 +18,7 @@ export default class Profile extends React.Component {
                 </div>
                 <div id="bio">
                     <h1>
-                        Hola, {this.props.first} {this.props.last}. What's up?
+                        {this.props.first} {this.props.last}
                     </h1>
                     <BioEditor
                         bio={this.props.bio}

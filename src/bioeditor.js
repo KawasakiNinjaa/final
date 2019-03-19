@@ -40,7 +40,7 @@ export default class BioEditor extends React.Component {
                         addBio
                     </button>
                 )}
-                <h2> {this.props.bio}</h2>
+                <i> {this.props.bio}</i>
                 {this.props.bio && (
                     <div>
                         <button onClick={this.showBioEditor}>editBio</button>
