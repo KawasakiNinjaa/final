@@ -74,7 +74,7 @@ export default class App extends React.Component {
                             exact
                             path="/"
                             render={() => (
-                                <div>
+                                <div id="landing">
                                     <Profile
                                         first={this.state.first}
                                         last={this.state.last}
@@ -86,6 +86,8 @@ export default class App extends React.Component {
                                     {this.state.uploaderIsVisible && (
                                         <Uploader setImage={this.setImage} />
                                     )}
+                                    <h1 id="chatroomlabel"> CHATROOM</h1>
+                                    <ChatRoom />
                                 </div>
                             )}
                         />
@@ -105,7 +107,6 @@ export default class App extends React.Component {
                             path="/onlineusers"
                             render={() => <OnlineUsers />}
                         />
-                        <Route path="/chatroom" render={() => <ChatRoom />} />
                     </div>
                 </BrowserRouter>
             </div>

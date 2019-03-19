@@ -4,9 +4,33 @@
     box-sizing: border-box;
 }
 
+#bg {
+    z-index: -9999;
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+}
+#bg img {
+    transform: rotate(180deg);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    min-width: 50%;
+    min-height: 50%;
+}
+
+#layer {
+    color: #334552;
+    opacity: 0.73;
+}
+
 body {
     font-family: "Hind Madurai", sans-serif;
-    background-color: #334552;
     text-align: center;
 }
 h1,
@@ -59,7 +83,7 @@ button {
     display: block;
     height: 120px;
     /* border-bottom: 2px solid #edc959; */
-    */background-color: #3479aa;
+    background-color: #334552;
     overflow: hidden;
 }
 #loginLogo {
@@ -97,12 +121,10 @@ button {
     height: 1000px;
     width: 400px;
 }
-#app {
-}
 #appbar {
     display: block;
     height: 120px;
-    border-bottom: 2px solid #edc959;
+    border-bottom: 2px solid #334552;
     */background-color: #3479aa;
 }
 #logoinapp {
@@ -123,6 +145,11 @@ button {
     margin-top: 4rem;
     margin-right: 1rem;
 }
+#landing {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
 #profilepic {
     margin-top: 2rem;
     display: inline-block;
@@ -131,9 +158,8 @@ button {
 }
 #profile-wrap {
     margin-top: 2.5rem;
-    margin-left: 1rem;
-    width: 25rem;
-    height: 500px;
+    width: 15rem;
+    height: 30rem;
     background-color: #bb2d4a;
     dispay: flex;
     flex-direction: column;
@@ -182,22 +208,37 @@ button {
     max-height: 70%;
     border-radius: 50%;
 }
+#chatroomlabel {
+    margin-top: 7rem;
+    background-color: white;
+    height: 20rem;
+    writing-mode: vertical-rl;
+    text-orientation: sideways;
+    margin-left: 3rem;
+    color: #590101;
+}
 #chat-container {
 }
 #chatroomMessagesList {
+    margin-top: 2.5rem;
     background-color: #6aa281;
-    height: 40rem;
-    width: 70rem;
+    height: 30rem;
+    width: 40rem;
     overflow-y: scroll;
+    padding: 0;
+    border-radius: 4rem;
 }
 #chatroommessage {
+    margin-left: 1.5rem;
+    margin-top: 1rem;
+    background-color: #89ff8d;
+    border-radius: 4rem;
     height: auto;
     display: flex;
     flex-direction: row;
-    border: 1px solid black;
 }
 #imginchat {
-    height: 3rem;
+    height: 1.5rem;
     border-radius: 50rem;
 }
 /* 000000000000000000000000000000000000000000000000000000000000000000000000*/

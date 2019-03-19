@@ -44,15 +44,17 @@ export class ChatRoom extends React.Component {
                         </div>
                     </div>
                 ))}
+                <textarea
+                    placeholder="Press enter to leave a message..."
+                    onKeyDown={this.handleKeyDown}
+                />
             </div>
         );
 
         return (
             <div>
-                <h1> chat room</h1>
                 <div id="chat-container" className="chat-msg-container">
                     {chatroomMessagesList}
-                    <textarea onKeyDown={this.handleKeyDown} />
                 </div>
             </div>
         );
