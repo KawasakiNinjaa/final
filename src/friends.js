@@ -64,14 +64,14 @@ export class Friends extends React.Component {
                             }
                         >
                             {" "}
-                            accept request
+                            accept
                         </button>
                         <button
                             onClick={() =>
                                 this.props.dispatch(unfriend(wannabe.id))
                             }
                         >
-                            cancel request
+                            cancel
                         </button>
                     </div>
                 ))}
@@ -81,12 +81,13 @@ export class Friends extends React.Component {
         return (
             <div id="friends-wrap">
                 <div id="friendlist">
-                    <h2> your friends </h2>
+                    {" "}
+                    <img id="friendslabel" src="./friendsbutton.png" />{" "}
                     {friendList}
                 </div>
 
                 <div id="wannabelist">
-                    <h2> friends wannabes </h2>
+                    <h2> Friend requests </h2>
                     {wannabeList}
                 </div>
             </div>

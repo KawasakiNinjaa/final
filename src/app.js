@@ -56,7 +56,9 @@ export default class App extends React.Component {
                 <BrowserRouter>
                     <div>
                         <div id="appbar">
-                            <img id="logoinapp" src="/logo.png" />
+                            <a href="/">
+                                <img id="logoinapp" src="/logo.png" />
+                            </a>
                             <div id="appbar-options">
                                 <a href="/logout">
                                     <img
