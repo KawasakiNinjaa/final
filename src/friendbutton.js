@@ -70,7 +70,6 @@ export default class FriendButton extends React.Component {
     render() {
         return (
             <div>
-                <p> I am FriendButton </p>
                 <button name="friendbutton" onClick={this.handleClick}>
                     {this.state.buttonText}
                 </button>

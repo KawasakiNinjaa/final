@@ -23,7 +23,6 @@ export default class OtherProfile extends React.Component {
     render() {
         return (
             <div id="otherprofile1">
-                <h2>o th e r Mem B e r s</h2>
                 <div id="otherprofile2">
                     {!this.state.img_url && <img src="/default.jpg" />}
                     {this.state.img_url && (
@@ -36,13 +35,15 @@ export default class OtherProfile extends React.Component {
                         <h1>
                             {this.state.first} {this.state.last}
                         </h1>
-                        <p> {this.state.bio}</p>
+                        <i> {this.state.bio}</i>
+                        <FriendButton
+                            myId={this.props.myId}
+                            otherUserId={this.props.match.params.id}
+                        />
                     </div>
+                    <p> registered as user </p>
+                    <h1> {this.props.match.params.id} </h1>
                 </div>
-                <FriendButton
-                    myId={this.props.myId}
-                    otherUserId={this.props.match.params.id}
-                />
             </div>
         );
     }

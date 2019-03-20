@@ -45,7 +45,7 @@ input {
     font-size: 1em;
     border-radius: 0.25em;
     color: #f4f5ef;
-    background-color: #334552;
+    background: transparent;
 }
 textarea {
     border: 2px solid #f4f5ef;
@@ -106,25 +106,18 @@ button {
     float: right;
 }
 #uploadform {
-    border: 1px solid black;
-    top: 13%;
-    left: 78%;
-    background-image: linear-gradient(
-        to bottom,
-        #a5f6ec,
-        #baf7f0,
-        #cef9f3,
-        #e1faf7,
-        #f3fbfa
-    );
+    top: 20rem;
+    right: 60rem;
+    border: 3px solid #ad8d0f;
+    width: 20rem;
+    background-color: #edc959;
+    border-radius: 1rem;
     position: fixed;
-    height: 1000px;
-    width: 400px;
 }
 #appbar {
     display: block;
     height: 120px;
-    border-bottom: 2px solid #334552;
+    border-bottom: 2px solid #edc959;
     background-color: #334552;
 }
 #logoinapp {
@@ -141,6 +134,9 @@ button {
     flex-direction: row;
     float: right;
 }
+#appbar-options img {
+    height: 3rem;
+}
 #greeting {
     margin-top: 4rem;
     margin-right: 1rem;
@@ -154,6 +150,7 @@ button {
     margin-top: 2rem;
     display: inline-block;
     height: 8rem;
+    width: 8rem;
     border-radius: 30rem;
 }
 #profile-wrap {
@@ -173,29 +170,43 @@ button {
     top: 10px;
 }
 #otherprofile1 {
-    text-align: center;
+    margin-left: 30%;
 }
+
 #otherprofile2 {
-    width: auto;
-    border: 1px solid black;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+    margin-top: 1.5rem;
+    position: ;
+    left: -30px;
+    background-color: #6aa281;
+    width: 40rem;
+    height: 20rem;
+    padding: 0;
+    border-top-right-radius: 4rem;
+    border-bottom-right-radius: 4rem;
 }
+#otherprofile2 img {
+    height: 20rem;
+    width: 21rem;
+    float: left;
+    position: static;
+    border-radius: 50%;
+}
+
 #friends-wrap {
+    top: 5rem;
+    right: 10rem;
     border: 3px solid #ad8d0f;
     width: 20rem;
     display: flex;
     flex-direction: column;
     background-color: #edc959;
     border-radius: 1rem;
+    position: fixed;
 }
 #friendslabel {
-    height: 5rem;
+    width: 10rem;
 }
 #friends-wrap img {
-    height: 3rem;
-    width: 3rem;
 }
 .friend {
     margin: 0.5rem;
@@ -205,15 +216,21 @@ button {
     flex-direction: row;
     justify-content: space-between;
     border-radius: 1rem;
+    align-items: center;
+    overflow: inherit;
 }
 .friend img {
-    max-width: 100%;
-    max-height: 70%;
+    height: 3rem;
+    width: 3rem;
     border-radius: 50%;
 }
 .friend button {
-    margin: 1rem;
     height: 1.5rem;
+}
+.acceptbutton {
+    background-color: #edc959;
+    color: #bb2d4a;
+    border: 2px solid #bb2d4a;
 }
 #chatroomlabel {
     margin-top: 7rem;
@@ -251,11 +268,11 @@ button {
 }
 /* 000000000000000000000000000000000000000000000000000000000000000000000000*/
 .wholecaroussel {
-    display: block;
+    height: 100vh;
 }
 #caroussel {
     position: relative;
-    height: 600px;
+    height: 100vh;
     overflow: hidden;
 }
 .kitty {

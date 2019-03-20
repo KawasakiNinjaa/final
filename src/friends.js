@@ -58,21 +58,24 @@ export class Friends extends React.Component {
                             {" "}
                             {wannabe.first} {wannabe.last}{" "}
                         </h3>
-                        <button
-                            onClick={() =>
-                                this.props.dispatch(accept(wannabe.id))
-                            }
-                        >
-                            {" "}
-                            accept
-                        </button>
-                        <button
-                            onClick={() =>
-                                this.props.dispatch(unfriend(wannabe.id))
-                            }
-                        >
-                            cancel
-                        </button>
+                        <div>
+                            <button
+                                className="acceptbutton"
+                                onClick={() =>
+                                    this.props.dispatch(accept(wannabe.id))
+                                }
+                            >
+                                {" "}
+                                accept
+                            </button>
+                            <button
+                                onClick={() =>
+                                    this.props.dispatch(unfriend(wannabe.id))
+                                }
+                            >
+                                cancel
+                            </button>
+                        </div>
                     </div>
                 ))}
             </div>
@@ -87,7 +90,7 @@ export class Friends extends React.Component {
                 </div>
 
                 <div id="wannabelist">
-                    <h2> Friend requests </h2>
+                    <p> Friend requests </p>
                     {wannabeList}
                 </div>
             </div>

@@ -13,11 +13,13 @@ export default class App extends React.Component {
         super(props);
         this.state = {
             uploaderIsVisible: false,
-            bio: ""
+            bio: "",
+            friendsIsVisible: false
         };
         this.showUploader = this.showUploader.bind(this);
         this.setImage = this.setImage.bind(this);
         this.setBio = this.setBio.bind(this);
+        this.showFriends = this.showFriends.bind(this);
     }
     showUploader() {
         //check if it's opened
@@ -25,6 +27,10 @@ export default class App extends React.Component {
         //and toggle its value
         this.setState({ uploaderIsVisible: !uploaderIsVisible });
         console.log("I am showUploader");
+    }
+    showFriends() {
+        const { friendsIsVisible } = this.state;
+        this.setState({ friendsIsVisible: !friendsIsVisible });
     }
 
     setImage(image) {
@@ -60,10 +66,14 @@ export default class App extends React.Component {
                                 <img id="logoinapp" src="/logo.png" />
                             </a>
                             <div id="appbar-options">
+                                <img
+                                    src="/lovebutton.png"
+                                    onClick={this.showFriends}
+                                />
                                 <a href="/logout">
                                     <img
                                         id="logoutbutton"
-                                        src="https://img.icons8.com/cotton/64/000000/shutdown.png"
+                                        src="/logoutbutton.png"
                                     />
                                 </a>
                                 <p id="greeting">
@@ -88,6 +98,7 @@ export default class App extends React.Component {
                                     {this.state.uploaderIsVisible && (
                                         <Uploader setImage={this.setImage} />
                                     )}
+                                    {this.state.friendsIsVisible && <Friends />}
                                     <h1 id="chatroomlabel"> CHATROOM</h1>
                                     <ChatRoom />
                                 </div>
