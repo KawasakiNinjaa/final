@@ -7,6 +7,7 @@ import OtherProfile from "./otherprofile";
 import Friends from "./friends";
 import OnlineUsers from "./onlineusers.js";
 import ChatRoom from "./chatroom";
+import EditProfile from "./editprofile";
 
 export default class App extends React.Component {
     constructor(props) {
@@ -66,6 +67,9 @@ export default class App extends React.Component {
                                 <img id="logoinapp" src="/logo.png" />
                             </a>
                             <div id="appbar-options">
+                                <a href="/editprofile">
+                                    <img src="/settingsbutton.png" />
+                                </a>
                                 <img
                                     src="/lovebutton.png"
                                     onClick={this.showFriends}
@@ -99,8 +103,8 @@ export default class App extends React.Component {
                                         <Uploader setImage={this.setImage} />
                                     )}
                                     {this.state.friendsIsVisible && <Friends />}
-                                    <h1 id="chatroomlabel"> CHATROOM</h1>
                                     <ChatRoom />
+                                    <OnlineUsers />
                                 </div>
                             )}
                         />
@@ -116,9 +120,10 @@ export default class App extends React.Component {
                             )}
                         />
                         <Route path="/friends" render={() => <Friends />} />
+
                         <Route
-                            path="/onlineusers"
-                            render={() => <OnlineUsers />}
+                            path="/editprofile"
+                            render={() => <EditProfile />}
                         />
                     </div>
                 </BrowserRouter>

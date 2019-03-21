@@ -14,11 +14,13 @@ export class OnlineUsers extends React.Component {
 
         const onlineUsersList = (
             <div id="onlineuserslist">
+                <h2> online users </h2>
                 {onlineUsers.map(onlineUser => (
-                    <div key={onlineUser.id}>
+                    <div className="online" key={onlineUser.id}>
+                        <img id="onlinebutton" src="onlinebutton.png" />
                         <Link to={`/user/${onlineUser.id}`}>
                             {" "}
-                            <img src={onlineUser.img_url} />{" "}
+                            <img id="imgonline" src={onlineUser.img_url} />{" "}
                         </Link>
                         <h3>
                             {" "}
@@ -29,12 +31,7 @@ export class OnlineUsers extends React.Component {
             </div>
         );
 
-        return (
-            <div>
-                <h2> online users </h2>
-                {onlineUsersList}
-            </div>
-        );
+        return <div>{onlineUsersList}</div>;
     }
 }
 

@@ -243,6 +243,42 @@ app.get("/friends-wannabes", async (req, res) => {
     res.json(friendsAndWannabes.rows);
 });
 
+app.post("/profile/edit", async (req, res) => {
+    console.log("body in edit profile: ", req.body);
+    let userName = req.body.first;
+    let userLast = req.body.last;
+    let userEmail = req.body.email;
+    let userPsswd = req.body.password;
+    let myId = req.session.userId;
+    let userCity = req.body.city;
+    let userCountry = req.body.country;
+
+    if (!userPsswd) {
+        const updateNoPass = await db.updatePfWithNoPass(
+            userName,
+            userLast,
+            userEmail,
+            userCity,
+            userCountry,
+            myId
+        );
+        console.log("updateNoPass: ", updateNoPass);
+        res.json({ succes: true });
+    } else {
+        const hashedPass = await bcrypt.hashPassword(userPsswd);
+        const updateWithPass = await db.updatePfWithPass(
+            userName,
+            userLast,
+            userEmail,
+            hashedPass,
+            userCity,
+            userCountry,
+            myId
+        );
+        res.json({ success: true });
+    }
+});
+
 app.get("/logout", (req, res) => {
     req.session = null;
     res.redirect("/welcome");

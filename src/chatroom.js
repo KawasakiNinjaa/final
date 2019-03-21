@@ -54,6 +54,8 @@ export class ChatRoom extends React.Component {
         return (
             <div>
                 <div id="chat-container" className="chat-msg-container">
+                    <h1 id="chatroomlabel"> CHATROOM</h1>
+
                     {chatroomMessagesList}
                 </div>
             </div>

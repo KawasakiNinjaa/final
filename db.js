@@ -22,7 +22,8 @@ exports.logIn = function logIn(email) {
 };
 
 exports.getUserById = function getUserById(id) {
-    let q = "SELECT id, first, last, img_url, bio FROM users WHERE id= $1";
+    let q =
+        "SELECT id, first, last, img_url, email, bio, city, country FROM users WHERE id= $1";
     let params = [id];
 
     return db.query(q, params);
@@ -122,6 +123,45 @@ exports.newChatroomMessage = function newChatroomMessage(comment, userId) {
             VALUES ($1, $2)
             RETURNING * `;
     let params = [comment, userId];
+
+    return db.query(q, params);
+};
+
+exports.updatePfWithNoPass = function updatePfWithNoPass(
+    first,
+    last,
+    email,
+    city,
+    country,
+    userId
+) {
+    let q = `
+    UPDATE users
+    SET first= $1, last= $2, email=$3, city=$4, country=$5
+    WHERE id = $6
+    RETURNING *
+    `;
+    let params = [first, last, email, city, country, userId];
+
+    return db.query(q, params);
+};
+
+exports.updatePfWithPass = function updatePfWithPass(
+    first,
+    last,
+    email,
+    password,
+    city,
+    country,
+    userId
+) {
+    let q = `
+    UPDATE users
+    SET first= $1, last= $2, email=$3, password=$4, city=$5, country=$6
+    WHERE id=$7
+
+    `;
+    let params = [first, last, email, password, city, country, userId];
 
     return db.query(q, params);
 };
