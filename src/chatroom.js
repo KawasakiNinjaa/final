@@ -8,10 +8,13 @@ export class ChatRoom extends React.Component {
         if (e.which === 13) {
             console.log("enter pressed");
             getSocket().emit("newChatroomMessage", e.target.value);
+            e.target.value = "";
         }
     }
     componentDidUpdate() {
-        this.elem.scrollTop = this.elem.scrollHeight;
+        if (this.elem) {
+            this.elem.scrollTop = this.elem.scrollHeight;
+        }
     }
     render() {
         if (!this.props.chatroomMessages) {

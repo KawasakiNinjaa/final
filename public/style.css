@@ -47,6 +47,11 @@ input {
     color: #f4f5ef;
     background: transparent;
 }
+
+input:hover {
+    background: #bb2d4a;
+    border: 2px solid #edc959;
+}
 textarea {
     border: 2px solid #f4f5ef;
     font-size: 1em;
@@ -263,6 +268,10 @@ button {
     display: flex;
     flex-direction: row;
 }
+#chatroommessage p {
+    color: black;
+}
+
 #imginchat {
     height: 1.5rem;
     width: 1.5rem;
