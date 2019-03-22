@@ -32,6 +32,7 @@
 body {
     font-family: "Hind Madurai", sans-serif;
     text-align: center;
+    background-color: black;
 }
 h1,
 h2,
@@ -87,8 +88,7 @@ button {
 #loginBar {
     display: block;
     height: 120px;
-    /* border-bottom: 2px solid #edc959; */
-    background-color: #334552;
+    border-bottom: 2px solid #edc959;
     overflow: hidden;
 }
 #loginLogo {
@@ -123,7 +123,6 @@ button {
     display: block;
     height: 120px;
     border-bottom: 2px solid #edc959;
-    background-color: #334552;
 }
 #logoinapp {
     position: relative;

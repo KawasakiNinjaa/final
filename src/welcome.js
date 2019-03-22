@@ -9,8 +9,8 @@ export default class Welcome extends React.Component {
             <div id="welcome">
                 <HashRouter>
                     <div>
-                        <Route exact path="/" component={Login} />
-                        <Route path="/signup" component={Registration} />
+                        <Route exact path="/" component={Registration} />
+                        <Route path="/logIn" component={Login} />
                     </div>
                 </HashRouter>
             </div>

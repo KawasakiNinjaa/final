@@ -70,7 +70,7 @@ export default class Login extends React.Component {
                         </div>
                         <br />
                         <p id="newhere">
-                            new here? <Link to="/signup">join Coagula! </Link>
+                            new here? <Link to="/">join Coagula! </Link>
                         </p>
                     </div>
                 </div>

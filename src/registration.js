@@ -35,9 +35,8 @@ export default class Registration extends React.Component {
     render() {
         return (
             <div id="registration-wrap">
-                <h1 id="welcometo"> Join Coagula and make things happen.</h1>
                 <div id="registration">
-                    <img src="logo.png" />
+                    <img src="" />
                     <div id="registration-form">
                         <h2> c r e a t e A n e w A c c o u n t </h2>
                         {this.state.error && (
@@ -49,6 +48,11 @@ export default class Registration extends React.Component {
                                 </p>
                             </div>
                         )}
+                        <input
+                            name="nickname"
+                            onChange={this.handleChange}
+                            placeholder="First Name"
+                        />
                         <input
                             name="first"
                             onChange={this.handleChange}
@@ -80,7 +84,8 @@ export default class Registration extends React.Component {
                         <br />
                         <button onClick={this.submit}> SIGN UP </button>
                         <p>
-                            Already a member? <Link to="/">Log in here </Link>
+                            Already a member?{" "}
+                            <Link to="/login">Log in here </Link>
                         </p>
                     </div>
                 </div>

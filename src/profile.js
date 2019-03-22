@@ -1,6 +1,5 @@
 import React from "react";
 import ProfilePic from "./profilepic";
-import BioEditor from "./bioeditor";
 
 export default class Profile extends React.Component {
     constructor(props) {
@@ -20,10 +19,6 @@ export default class Profile extends React.Component {
                     <h1>
                         {this.props.first} {this.props.last}
                     </h1>
-                    <BioEditor
-                        bio={this.props.bio}
-                        setBio={this.props.setBio}
-                    />
                 </div>
             </div>
         );

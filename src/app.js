@@ -3,11 +3,6 @@ import axios from "./axios";
 import Uploader from "./uploader";
 import Profile from "./profile";
 import { BrowserRouter, Route, Link } from "react-router-dom";
-import OtherProfile from "./otherprofile";
-import Friends from "./friends";
-import OnlineUsers from "./onlineusers.js";
-import ChatRoom from "./chatroom";
-import EditProfile from "./editprofile";
 
 export default class App extends React.Component {
     constructor(props) {
@@ -67,13 +62,6 @@ export default class App extends React.Component {
                                 <img id="logoinapp" src="/logo.png" />
                             </a>
                             <div id="appbar-options">
-                                <a href="/editprofile">
-                                    <img src="/settingsbutton.png" />
-                                </a>
-                                <img
-                                    src="/lovebutton.png"
-                                    onClick={this.showFriends}
-                                />
                                 <a href="/logout">
                                     <img
                                         id="logoutbutton"
@@ -102,28 +90,8 @@ export default class App extends React.Component {
                                     {this.state.uploaderIsVisible && (
                                         <Uploader setImage={this.setImage} />
                                     )}
-                                    {this.state.friendsIsVisible && <Friends />}
-                                    <ChatRoom />
-                                    <OnlineUsers />
                                 </div>
                             )}
-                        />
-                        <Route
-                            path="/user/:id"
-                            render={props => (
-                                <OtherProfile
-                                    myId={this.state.myId}
-                                    key={props.match.url}
-                                    match={props.match}
-                                    history={props.history}
-                                />
-                            )}
-                        />
-                        <Route path="/friends" render={() => <Friends />} />
-
-                        <Route
-                            path="/editprofile"
-                            render={() => <EditProfile />}
                         />
                     </div>
                 </BrowserRouter>
