@@ -2,6 +2,7 @@ import React from "react";
 import axios from "./axios";
 import Uploader from "./uploader";
 import Profile from "./profile";
+import ReportForm from "./reportform";
 import { BrowserRouter, Route, Link } from "react-router-dom";
 
 export default class App extends React.Component {
@@ -87,6 +88,7 @@ export default class App extends React.Component {
                                         bio={this.state.bio}
                                         setBio={this.setBio}
                                     />
+                                    <ReportForm />
                                     {this.state.uploaderIsVisible && (
                                         <Uploader setImage={this.setImage} />
                                     )}

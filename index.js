@@ -21,6 +21,9 @@ var multer = require("multer");
 var uidSafe = require("uid-safe");
 var path = require("path");
 
+// F I N A L * P R O J E C T //
+const lines = require("vbb-lines");
+
 /// upload///////////////////////////
 var diskStorage = multer.diskStorage({
     destination: function(req, file, callback) {
@@ -160,7 +163,11 @@ app.get("/user", requireLoggedInUser, (req, res) => {
         res.json([req.session.userId, rows[0]]);
     });
 });
-
+/// ROUTE TO GET ALL THE VBB LINES...reportform.componentDidMount
+app.get("/vbb-lines", async (req, res) => {
+    const allLines = await lines(true, "all");
+    res.json(allLines);
+});
 app.post(
     "/upload-profilepic",
     uploader.single("file"),

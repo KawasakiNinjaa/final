@@ -56,6 +56,10 @@ export default function reducer(state = {}, action) {
         console.log("state in new_chatroom_mesaage after assignment: ", state);
         return state;
     }
+    if (action.type == "ALL_LINES_VBB") {
+        state = { ...state, allLinesVbb: action.lines };
+        return state;
+    }
 
     return state;
 }
