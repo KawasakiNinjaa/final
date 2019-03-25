@@ -60,6 +60,10 @@ export default function reducer(state = {}, action) {
         state = { ...state, allLinesVbb: action.lines };
         return state;
     }
+    if (action.type == "ALL_STATIONS_VBB") {
+        state = { ...state, allStationsVbb: action.stations };
+        return state;
+    }
 
     return state;
 }

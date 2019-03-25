@@ -9,6 +9,8 @@ const db = require("./db");
 const s3 = require("./s3");
 const bcrypt = require("./bcrypt");
 const csurf = require("csurf");
+const request = require("request");
+const router = express.Router();
 /// cookie set up for socket.io
 const cookieSession = require("cookie-session");
 const cookieSessionMiddleware = cookieSession({
@@ -23,6 +25,8 @@ var path = require("path");
 
 // F I N A L * P R O J E C T //
 const lines = require("vbb-lines");
+const stations = require("vbb-stations");
+/////////////////////////////////////////////
 
 /// upload///////////////////////////
 var diskStorage = multer.diskStorage({
@@ -168,6 +172,20 @@ app.get("/vbb-lines", async (req, res) => {
     const allLines = await lines(true, "all");
     res.json(allLines);
 });
+
+app.get("/get-stations", async (req, res) => {
+    const stationsArr = await stations();
+    const stationNames = stationsArr.map(station => {
+        return {
+            name: station.name,
+            latitude: station.location.latitude,
+            longitude: station.location.longitude
+        };
+    });
+    console.log("stationNames", stationNames);
+    res.json(stationNames);
+});
+
 app.post(
     "/upload-profilepic",
     uploader.single("file"),

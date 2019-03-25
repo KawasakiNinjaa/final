@@ -29,3 +29,12 @@ CREATE TABLE chatroom (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 
 );
+
+CREATE TABLE reports (
+    id SERIAL primary key,
+    user_id INT NOT NULL REFERENCES users(id),
+    line_vbb VARCHAR(255) not null,
+    station_vbb VARCHAR (255) not null,
+    location VARCHAR (255),
+    comment TEXT
+)

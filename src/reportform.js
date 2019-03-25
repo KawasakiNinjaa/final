@@ -1,5 +1,5 @@
 import React from "react";
-import { getAllLines } from "./actions";
+import { getAllLines, getAllStations } from "./actions";
 import { connect } from "react-redux";
 
 export class ReportForm extends React.Component {
@@ -9,52 +9,96 @@ export class ReportForm extends React.Component {
     }
     componentDidMount() {
         this.props.dispatch(getAllLines());
+        this.props.dispatch(getAllStations());
         // axios.get("/vbb-lines").then(data => {
         //     data.filter(line => line.mode == "bus");
         //     console.log("vbb-lines: ", data);
         // });
     }
     render() {
-        console.log("bus linien: ", this.props.bus);
-        console.log("ubahn: ", this.props.ubahn);
-        console.log("Sbahn: ", this.props.sbahn);
-        console.log("Tram: ", this.props.tram);
+        console.log("stations: ", this.props.stations);
+
+        if (
+            !this.props.bus &&
+            !this.props.ubahn &&
+            !this.props.sbahn &&
+            !this.props.tram
+        ) {
+            return null;
+        }
+
+        const ubahn = this.props.ubahn;
+        const sbahn = this.props.sbahn;
+        const tram = this.props.tram;
+        const bus = this.props.bus;
+        const stations = this.props.stations;
 
         return (
             <div id="bvg-buttons">
-                <p> I am ReportForm </p>
-                <div className="dropdown">
-                    <img className="dropbtn" src="./ubahnbutton.png" />
-                    <div className="dropdown-content">
-                        <a href="#">Link 1</a>
-                        <a href="#">Link 2</a>
-                        <a href="#">Link 3</a>
-                    </div>
-                </div>
-                <div className="dropdown">
-                    <img className="dropbtn" src="./sbahnbutton.png" />
-                    <div className="dropdown-content">
-                        <a href="#">Link 1</a>
-                        <a href="#">Link 2</a>
-                        <a href="#">Link 3</a>
-                    </div>
-                </div>
-                <div className="dropdown">
-                    <img className="dropbtn" src="./trambutton.png" />
-                    <div className="dropdown-content">
-                        <a href="#">Link 1</a>
-                        <a href="#">Link 2</a>
-                        <a href="#">Link 3</a>
-                    </div>
-                </div>
-                <div className="dropdown">
-                    <img className="dropbtn" src="./busbutton.png" />
-                    <div className="dropdown-content">
-                        <a href="#">Link 1</a>
-                        <a href="#">Link 2</a>
-                        <a href="#">Link 3</a>
-                    </div>
-                </div>
+                <img className="dropbtn" src="./ubahnbutton.png" />
+                <img className="dropbtn" src="./sbahnbutton.png" />
+                <img className="dropbtn" src="./trambutton.png" />
+                <img className="dropbtn" src="./busbutton.png" />
+
+                <p> Line </p>
+                <datalist id="lines">
+                    {ubahn.map(line => {
+                        return (
+                            <option
+                                key={line.id}
+                                className="dropdown-result"
+                                value={line.name}
+                            />
+                        );
+                    })}
+                    {sbahn.map(line => {
+                        return (
+                            <option
+                                key={line.id}
+                                className="dropdown-result"
+                                value={line.name}
+                            />
+                        );
+                    })}
+                    {tram.map(line => {
+                        return (
+                            <option
+                                key={line.id}
+                                className="dropdown-result"
+                                value={line.name}
+                            />
+                        );
+                    })}
+                    {bus.map(line => {
+                        return (
+                            <option
+                                key={line.id}
+                                className="dropdown-result"
+                                value={line.name}
+                            />
+                        );
+                    })}
+                </datalist>
+                <input type="text" list="lines" />
+
+                <p> Direction </p>
+                <datalist id="stations">
+                    {stations.map(station => {
+                        return <option key={station.id} value={station.name} />;
+                    })}
+                    <option className="dropdown-result" value={stations} />
+                </datalist>
+                <input type="text" list="stations" />
+                <p> Your location </p>
+                <datalist id="location">
+                    {stations.map(station => {
+                        return <option key={station.id} value={station.name} />;
+                    })}
+                    <option className="dropdown-result" value={stations} />
+                </datalist>
+                <input type="text" list="location" />
+                <p> Comments </p>
+                <textarea />
             </div>
         );
     }
@@ -78,7 +122,8 @@ const mapStateToProps = state => {
             state.allLinesVbb &&
             state.allLinesVbb.filter(
                 line => line.product == "tram" && line.operator == "796"
-            )
+            ),
+        stations: state.allStationsVbb && state.allStationsVbb
         // wannabes: , //accepted:false; filter method might be helpful
         // friends:// accepted:true
     };

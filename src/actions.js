@@ -77,10 +77,19 @@ export function newChatroomMessage(data) {
     };
 }
 
-export async function getAllLines(data) {
+export async function getAllLines() {
     const allLines = await axios.get("/vbb-lines");
     return {
         type: "ALL_LINES_VBB",
         lines: allLines.data
+    };
+}
+
+export async function getAllStations() {
+    const allStations = await axios.get("/get-stations");
+    console.log("allStations: ", allStations);
+    return {
+        type: "ALL_STATIONS_VBB",
+        stations: allStations.data
     };
 }
