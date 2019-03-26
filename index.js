@@ -177,6 +177,7 @@ app.get("/get-stations", async (req, res) => {
     const stationsArr = await stations();
     const stationNames = stationsArr.map(station => {
         return {
+            id: station.id,
             name: station.name,
             latitude: station.location.latitude,
             longitude: station.location.longitude
@@ -361,26 +362,31 @@ io.on("connection", async socket => {
     });
 
     //send the socket the array of chat messages and emits event to the front
-    const arrayOfChatMessages = await db.getChatroomMessages();
-    console.log("arrayOfChatMessages: ", arrayOfChatMessages.rows);
-    io.sockets.emit("chatroomMessages", arrayOfChatMessages.rows.reverse());
+    const arrayOfReports = await db.getReports();
+    console.log("arrayOfReports: ", arrayOfReports.rows);
+    io.sockets.emit("getReports", arrayOfReports.rows.reverse());
 
-    socket.on("newChatroomMessage", async data => {
-        console.log("data in newChatMessage: ", data);
-        const newMessage = await db.newChatroomMessage(data, userId);
-        console.log("newMessage_: ", newMessage);
+    socket.on("newReport", async data => {
+        console.log("data in newReport: ", data);
+        const newMessage = await db.newReport(
+            userId,
+            data.line,
+            data.direction,
+            data.location,
+            data.comment
+        );
+        console.log("newMessage_: ", newMessage.rows);
         const userStuff = await db.getUserById(userId);
-        const newChatroomMessage = {
+        const newReport = {
             id: newMessage.rows[0].id,
             user_id: newMessage.rows[0].user_id,
             comment: newMessage.rows[0].comment,
             created_at: newMessage.rows[0].created_at,
             first: userStuff.rows[0].first,
-            last: userStuff.rows[0].last,
-            img_url: userStuff.rows[0].img_url
+            last: userStuff.rows[0].last
         };
 
-        io.sockets.emit("newChatroomMessage", newChatroomMessage);
+        io.sockets.emit("newReport", newReport);
     });
 });
 

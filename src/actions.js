@@ -62,21 +62,6 @@ export async function userLeft(data) {
     };
 }
 
-export function chatroomMessages(data) {
-    return {
-        type: "CHATROOM_MESSAGES",
-        chatroom_messages: data
-    };
-}
-
-export function newChatroomMessage(data) {
-    console.log("data in newChatroomMessage: ", data);
-    return {
-        type: "NEW_CHATROOM_MESSAGE",
-        message_info: data
-    };
-}
-
 export async function getAllLines() {
     const allLines = await axios.get("/vbb-lines");
     return {
@@ -91,5 +76,18 @@ export async function getAllStations() {
     return {
         type: "ALL_STATIONS_VBB",
         stations: allStations.data
+    };
+}
+export function getReports(data) {
+    return {
+        type: "GET_REPORTS",
+        reports: data
+    };
+}
+export function newReport(data) {
+    console.log("data in newReport: ", data);
+    return {
+        type: "NEW_REPORT",
+        report: data
     };
 }

@@ -3,8 +3,8 @@ import {
     onlineUsers,
     userJoined,
     userLeft,
-    chatroomMessages,
-    newChatroomMessage
+    getReports,
+    newReport
 } from "./actions";
 let socket;
 
@@ -24,12 +24,12 @@ export function getSocket(store) {
             store.dispatch(userLeft(data));
         });
 
-        socket.on("chatroomMessages", data => {
-            store.dispatch(chatroomMessages(data));
+        socket.on("getReports", data => {
+            store.dispatch(getReports(data));
         });
 
-        socket.on("newChatroomMessage", data => {
-            store.dispatch(newChatroomMessage(data));
+        socket.on("newReport", data => {
+            store.dispatch(newReport(data));
         });
     }
 

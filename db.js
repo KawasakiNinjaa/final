@@ -165,3 +165,30 @@ exports.updatePfWithPass = function updatePfWithPass(
 
     return db.query(q, params);
 };
+
+exports.getReports = function getReports() {
+    let q = `SELECT users.first, users.last, reports.line_vbb, reports.direction_id, reports.location_id, reports.comment
+    FROM reports
+    JOIN users
+    ON reports.user_id = users.id
+    ORDER BY reports.id DESC LIMIT 10
+    `;
+
+    return db.query(q);
+};
+
+exports.newReport = function newReport(
+    userId,
+    line,
+    direction,
+    location,
+    comment
+) {
+    let q = `INSERT INTO
+            reports (user_id, line_vbb, direction_id, location_id, comment)
+            VALUES ($1, $2, $3, $4, $5)
+            RETURNING * `;
+    let params = [userId, line, direction, location, comment];
+
+    return db.query(q, params);
+};

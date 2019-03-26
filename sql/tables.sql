@@ -1,6 +1,7 @@
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS friendships;
 DROP TABLE IF EXISTS chatroom;
+DROP TABLE IF EXISTS reports;
 
 CREATE TABLE users (
     id SERIAL primary key,
@@ -34,7 +35,8 @@ CREATE TABLE reports (
     id SERIAL primary key,
     user_id INT NOT NULL REFERENCES users(id),
     line_vbb VARCHAR(255) not null,
-    station_vbb VARCHAR (255) not null,
-    location VARCHAR (255),
+    direction_id VARCHAR (255) not null,
+    location_id VARCHAR (255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     comment TEXT
-)
+);

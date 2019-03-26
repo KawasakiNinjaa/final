@@ -43,25 +43,22 @@ export default function reducer(state = {}, action) {
         state = { ...state, onlineUsers };
         return state;
     }
-    if (action.type == "CHATROOM_MESSAGES") {
-        state = { ...state, chatroomMessages: action.chatroom_messages };
-        return state;
-    }
-    if (action.type == "NEW_CHATROOM_MESSAGE") {
-        const chatroomMessages = [
-            ...state.chatroomMessages,
-            action.message_info
-        ];
-        state = { ...state, chatroomMessages };
-        console.log("state in new_chatroom_mesaage after assignment: ", state);
-        return state;
-    }
     if (action.type == "ALL_LINES_VBB") {
         state = { ...state, allLinesVbb: action.lines };
         return state;
     }
     if (action.type == "ALL_STATIONS_VBB") {
         state = { ...state, allStationsVbb: action.stations };
+        return state;
+    }
+    if (action.type == "GET_REPORTS") {
+        state = { ...state, controlReports: action.reports };
+        return state;
+    }
+    if (action.type == "NEW_REPORT") {
+        const controlReports = [...state.controlReports, action.report];
+        state = { ...state, controlReports };
+        console.log("state in new_chatroom_mesaage after assignment: ", state);
         return state;
     }
 

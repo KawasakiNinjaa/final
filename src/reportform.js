@@ -1,11 +1,14 @@
 import React from "react";
 import { getAllLines, getAllStations } from "./actions";
 import { connect } from "react-redux";
+import { getSocket } from "./socket.js";
 
 export class ReportForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
+        this.handleChange = this.handleChange.bind(this);
+        this.handleKeyDown = this.handleKeyDown.bind(this);
     }
     componentDidMount() {
         this.props.dispatch(getAllLines());
@@ -14,6 +17,25 @@ export class ReportForm extends React.Component {
         //     data.filter(line => line.mode == "bus");
         //     console.log("vbb-lines: ", data);
         // });
+    }
+    handleChange(e) {
+        this[e.target.name] = e.target.value;
+    }
+    handleKeyDown(e) {
+        if (e.which === 13) {
+            console.log("enter pressed");
+            getSocket().emit("newReport", e.target.value);
+            e.target.value = "";
+        }
+    }
+    report(line, direction, location, comment) {
+        console.log("i am report()", line, direction, location, comment);
+        getSocket().emit("newReport", {
+            line: line,
+            direction: direction,
+            location: location,
+            comment: comment
+        });
     }
     render() {
         console.log("stations: ", this.props.stations);
@@ -34,7 +56,7 @@ export class ReportForm extends React.Component {
         const stations = this.props.stations;
 
         return (
-            <div id="bvg-buttons">
+            <div id="report-form">
                 <img className="dropbtn" src="./ubahnbutton.png" />
                 <img className="dropbtn" src="./sbahnbutton.png" />
                 <img className="dropbtn" src="./trambutton.png" />
@@ -79,26 +101,62 @@ export class ReportForm extends React.Component {
                         );
                     })}
                 </datalist>
-                <input type="text" list="lines" />
+                <input
+                    name="line"
+                    type="text"
+                    list="lines"
+                    onChange={this.handleChange}
+                />
 
                 <p> Direction </p>
                 <datalist id="stations">
                     {stations.map(station => {
-                        return <option key={station.id} value={station.name} />;
+                        return (
+                            <option key={station.id} defaultValue={station.id}>
+                                {station.name}
+                            </option>
+                        );
                     })}
-                    <option className="dropdown-result" value={stations} />
                 </datalist>
-                <input type="text" list="stations" />
+                <input
+                    name="direction"
+                    type="text"
+                    list="stations"
+                    onChange={this.handleChange}
+                />
                 <p> Your location </p>
                 <datalist id="location">
                     {stations.map(station => {
-                        return <option key={station.id} value={station.name} />;
+                        return (
+                            <option key={station.id} defaultValue={station.id}>
+                                {station.name}
+                            </option>
+                        );
                     })}
                     <option className="dropdown-result" value={stations} />
                 </datalist>
-                <input type="text" list="location" />
+                <input
+                    name="location"
+                    type="text"
+                    list="location"
+                    onChange={this.handleChange}
+                />
                 <p> Comments </p>
-                <textarea />
+                <textarea name="comment" onChange={this.handleChange} />
+                <br />
+                <button
+                    onClick={() => {
+                        this.report(
+                            this.line,
+                            this.direction,
+                            this.location,
+                            this.comment
+                        );
+                    }}
+                >
+                    {" "}
+                    REPORT{" "}
+                </button>
             </div>
         );
     }

@@ -4,6 +4,7 @@ import Uploader from "./uploader";
 import Profile from "./profile";
 import ReportForm from "./reportform";
 import { BrowserRouter, Route, Link } from "react-router-dom";
+import MapContainer from "./mapcontainer";
 
 export default class App extends React.Component {
     constructor(props) {
@@ -80,15 +81,8 @@ export default class App extends React.Component {
                             path="/"
                             render={() => (
                                 <div id="landing">
-                                    <Profile
-                                        first={this.state.first}
-                                        last={this.state.last}
-                                        image={this.state.img_url}
-                                        showUploader={this.showUploader}
-                                        bio={this.state.bio}
-                                        setBio={this.setBio}
-                                    />
                                     <ReportForm />
+                                    <MapContainer />
                                     {this.state.uploaderIsVisible && (
                                         <Uploader setImage={this.setImage} />
                                     )}
