@@ -2,11 +2,6 @@ import React, { Component } from "react";
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from "google-maps-react";
 import { connect } from "react-redux";
 
-const mapStyles = {
-    width: "600px",
-    height: "400px"
-};
-
 export class MapContainer extends Component {
     constructor(props) {
         super(props);
@@ -40,20 +35,25 @@ export class MapContainer extends Component {
 
         // let title = "schlossPark";
         return (
-            <Map
-                google={this.props.google}
-                zoom={12}
-                style={mapStyles}
-                initialCenter={{
-                    lat: 52.521918,
-                    lng: 13.413215
-                }}
-            >
-                {mapreport.map(report => {
-                    let pos = { lat: report.latitude, lng: report.longitude };
-                    return <Marker title={report.name} position={pos} />;
-                })}
-            </Map>
+            <div id="mapcontainer">
+                <Map
+                    id="map"
+                    google={this.props.google}
+                    zoom={12}
+                    initialCenter={{
+                        lat: 52.521918,
+                        lng: 13.413215
+                    }}
+                >
+                    {mapreport.map(report => {
+                        let pos = {
+                            lat: report.latitude,
+                            lng: report.longitude
+                        };
+                        return <Marker title={report.name} position={pos} />;
+                    })}
+                </Map>
+            </div>
         );
     }
 }

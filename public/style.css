@@ -13,23 +13,18 @@
 }
 
 #bg {
-    z-index: -9999;
-    position: fixed;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
+    z-index: -200;
+    box-sizing: border-box;
 }
 #bg img {
-    transform: rotate(180deg);
     position: absolute;
     top: 0;
-    left: 0;
+    margin-left: 0;
     right: 0;
     bottom: 0;
+    height: 100%;
     margin: auto;
-    min-width: 50%;
-    min-height: 50%;
+    border: 5px solid black;
 }
 
 #layer {
@@ -73,10 +68,10 @@ textarea {
 button {
     margin: 0;
     padding: 0.2rem;
-    background-color: #bb2d4a;
-    border: 2px solid #f4f5ef;
+    background-color: transparent;
+    border: 2px solid DeepPink;
     border-radius: 0.25rem;
-    color: #f4f5ef;
+    color: DeepPink;
 }
 
 #welcometo {
@@ -139,26 +134,69 @@ button {
     position: fixed;
 }
 
+#mapcontainer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -100;
+}
+
 #report-form img {
     height: 30px;
     width: 30px;
 }
 
-#report-form {
-    border: 2px solid white;
+#report-form-wrap {
+    overflow: hidden;
+    position: relative;
+    height: 400px;
 }
 
-#logoinapp {
-    position: relative;
-    display: inline-block;
-    height: 150px;
-    float: left;
-    left: 200px;
+#report-form {
+    border: 20px solid DeepPink;
+
+    position: absolute;
+
+    right: -250px;
+    top: ;
 }
+
+#app h2 {
+    color: DeepPink;
+}
+
 #appbar {
-    display: block;
-    height: 120px;
+    margin: 0;
+    padding: 0;
+    width: 45%;
+    height: 100%; /* Full height */
+    position: fixed; /* Make it stick, even on scroll */
+    display: grid;
+    overflow: inherit;
+    border-bottom-right-radius: 100%;
 }
+
+#reportbutton {
+    position: absolute;
+    margin-top: 10%;
+    right: 20px;
+    margin-top: 10%;
+}
+
+#logoutbutton {
+    position: absolute;
+    right: 20px;
+    margin-top: 13%;
+}
+
+#logoapp {
+    float: right;
+    max-width: 150px;
+    margin-right: 2%;
+}
+
 #appbar-options {
     margin-top: 2rem;
     position: relative;
@@ -170,8 +208,9 @@ button {
     height: 3rem;
 }
 #greeting {
-    margin-top: 4rem;
-    margin-right: 1rem;
+    float: right;
+
+    color: DeepPink;
 }
 #landing {
     display: flex;
@@ -196,112 +235,20 @@ button {
 #profilepic2 {
     height: 200px;
 }
-#bio {
-    position: relative;
-    top: 10px;
-}
-#otherprofile1 {
-    margin-left: 30%;
-}
 
-#otherprofile2 {
-    margin-top: 1.5rem;
-    position: ;
-    left: -30px;
-    background-color: #6aa281;
-    width: 40rem;
-    height: 20rem;
-    padding: 0;
-    border-top-right-radius: 4rem;
-    border-bottom-right-radius: 4rem;
-}
-#otherprofile2 img {
-    height: 20rem;
-    width: 21rem;
-    float: left;
-    position: static;
-    border-radius: 50%;
-}
-
-#friends-wrap {
-    top: 5rem;
-    right: 10rem;
-    border: 3px solid #ad8d0f;
-    width: 20rem;
-    display: flex;
-    flex-direction: column;
-    background-color: #edc959;
-    border-radius: 1rem;
-    position: fixed;
-}
-#friendslabel {
-    width: 10rem;
-}
-#friends-wrap img {
-}
-.friend {
-    margin: 0.5rem;
+#report-list {
     height: auto;
-    background-color: #ad8d0f;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    border-radius: 1rem;
-    align-items: center;
-    overflow: inherit;
-}
-.friend img {
-    height: 3rem;
-    width: 3rem;
-    border-radius: 50%;
-}
-.friend button {
-    height: 1.5rem;
-}
-.acceptbutton {
-    background-color: #edc959;
-    color: #bb2d4a;
-    border: 2px solid #bb2d4a;
-}
-#chatroomlabel {
-    margin-top: 7rem;
-    background-color: white;
-    height: 20rem;
-    writing-mode: vertical-rl;
-    text-orientation: sideways;
-    margin-left: 3rem;
-    color: #590101;
-}
-#chat-container {
-    display: flex;
-    flex-direction: row;
-}
-#chatroomMessagesList {
-    margin-top: 2.5rem;
-    background-color: #6aa281;
-    height: 30rem;
-    width: 40rem;
-    overflow-y: scroll;
+    width: auto;
     padding: 0;
-    border-radius: 4rem;
 }
-#chatroommessage {
+#report {
     margin-left: 1.5rem;
     margin-top: 1rem;
-    background-color: #89ff8d;
+    background-color: black;
     border-radius: 4rem;
     height: auto;
     display: flex;
     flex-direction: row;
-}
-#chatroommessage p {
-    color: black;
-}
-
-#imginchat {
-    height: 1.5rem;
-    width: 1.5rem;
-    border-radius: 50rem;
 }
 
 #editprofile {
@@ -316,31 +263,5 @@ button {
     margin-top: 100px;
     height: 100px;
     width: 100px;
-    border-radius: 50%;
-}
-#onlinebutton {
-    height: 30px;
-}
-
-#onlineuserslist {
-    margin-top: 2.5rem;
-    margin-left: 2rem;
-    width: 350px;
-}
-.online {
-    margin: 15px;
-    display: flex;
-    flex-direction: row;
-    width: 300px;
-    align-items: center;
-    background-color: #334552;
-    border-radius: 30px;
-}
-
-#imgonline {
-    margin-left: 30px;
-    margin-right: 15px;
-    height: 3rem;
-    width: 3rem;
     border-radius: 50%;
 }

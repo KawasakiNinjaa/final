@@ -3,6 +3,8 @@ import { getAllLines, getAllStations } from "./actions";
 import { connect } from "react-redux";
 import { getSocket } from "./socket.js";
 
+var audio = new Audio("/sbahn_ton.mp3");
+
 export class ReportForm extends React.Component {
     constructor(props) {
         super(props);
@@ -36,6 +38,7 @@ export class ReportForm extends React.Component {
             location: location,
             comment: comment
         });
+        audio.play();
     }
     render() {
         console.log("stations: ", this.props.stations);
@@ -56,107 +59,115 @@ export class ReportForm extends React.Component {
         const stations = this.props.stations;
 
         return (
-            <div id="report-form">
-                <img className="dropbtn" src="./ubahnbutton.png" />
-                <img className="dropbtn" src="./sbahnbutton.png" />
-                <img className="dropbtn" src="./trambutton.png" />
-                <img className="dropbtn" src="./busbutton.png" />
+            <div id="report-form-wrap">
+                <div id="report-form">
+                    <img className="dropbtn" src="./ubahnbutton.png" />
+                    <img className="dropbtn" src="./sbahnbutton.png" />
+                    <img className="dropbtn" src="./trambutton.png" />
+                    <img className="dropbtn" src="./busbutton.png" />
 
-                <p> Line </p>
-                <datalist id="lines">
-                    {ubahn.map(line => {
-                        return (
-                            <option
-                                key={line.id}
-                                className="dropdown-result"
-                                value={line.name}
-                            />
-                        );
-                    })}
-                    {sbahn.map(line => {
-                        return (
-                            <option
-                                key={line.id}
-                                className="dropdown-result"
-                                value={line.name}
-                            />
-                        );
-                    })}
-                    {tram.map(line => {
-                        return (
-                            <option
-                                key={line.id}
-                                className="dropdown-result"
-                                value={line.name}
-                            />
-                        );
-                    })}
-                    {bus.map(line => {
-                        return (
-                            <option
-                                key={line.id}
-                                className="dropdown-result"
-                                value={line.name}
-                            />
-                        );
-                    })}
-                </datalist>
-                <input
-                    name="line"
-                    type="text"
-                    list="lines"
-                    onChange={this.handleChange}
-                />
+                    <p> Line </p>
+                    <datalist id="lines">
+                        {ubahn.map(line => {
+                            return (
+                                <option
+                                    key={line.id}
+                                    className="dropdown-result"
+                                    value={line.name}
+                                />
+                            );
+                        })}
+                        {sbahn.map(line => {
+                            return (
+                                <option
+                                    key={line.id}
+                                    className="dropdown-result"
+                                    value={line.name}
+                                />
+                            );
+                        })}
+                        {tram.map(line => {
+                            return (
+                                <option
+                                    key={line.id}
+                                    className="dropdown-result"
+                                    value={line.name}
+                                />
+                            );
+                        })}
+                        {bus.map(line => {
+                            return (
+                                <option
+                                    key={line.id}
+                                    className="dropdown-result"
+                                    value={line.name}
+                                />
+                            );
+                        })}
+                    </datalist>
+                    <input
+                        name="line"
+                        type="text"
+                        list="lines"
+                        onChange={this.handleChange}
+                    />
 
-                <p> Direction </p>
-                <datalist id="stations">
-                    {stations.map(station => {
-                        return (
-                            <option key={station.id} defaultValue={station.id}>
-                                {station.name}
-                            </option>
-                        );
-                    })}
-                </datalist>
-                <input
-                    name="direction"
-                    type="text"
-                    list="stations"
-                    onChange={this.handleChange}
-                />
-                <p> Your location </p>
-                <datalist id="location">
-                    {stations.map(station => {
-                        return (
-                            <option key={station.id} defaultValue={station.id}>
-                                {station.name}
-                            </option>
-                        );
-                    })}
-                    <option className="dropdown-result" value={stations} />
-                </datalist>
-                <input
-                    name="location"
-                    type="text"
-                    list="location"
-                    onChange={this.handleChange}
-                />
-                <p> Comments </p>
-                <textarea name="comment" onChange={this.handleChange} />
-                <br />
-                <button
-                    onClick={() => {
-                        this.report(
-                            this.line,
-                            this.direction,
-                            this.location,
-                            this.comment
-                        );
-                    }}
-                >
-                    {" "}
-                    REPORT{" "}
-                </button>
+                    <p> Direction </p>
+                    <datalist id="stations">
+                        {stations.map(station => {
+                            return (
+                                <option
+                                    key={station.id}
+                                    defaultValue={station.id}
+                                >
+                                    {station.name}
+                                </option>
+                            );
+                        })}
+                    </datalist>
+                    <input
+                        name="direction"
+                        type="text"
+                        list="stations"
+                        onChange={this.handleChange}
+                    />
+                    <p> Your location </p>
+                    <datalist id="location">
+                        {stations.map(station => {
+                            return (
+                                <option
+                                    key={station.id}
+                                    defaultValue={station.id}
+                                >
+                                    {station.name}
+                                </option>
+                            );
+                        })}
+                        <option className="dropdown-result" value={stations} />
+                    </datalist>
+                    <input
+                        name="location"
+                        type="text"
+                        list="location"
+                        onChange={this.handleChange}
+                    />
+                    <p> Comments </p>
+                    <textarea name="comment" onChange={this.handleChange} />
+                    <br />
+                    <button
+                        onClick={() => {
+                            this.report(
+                                this.line,
+                                this.direction,
+                                this.location,
+                                this.comment
+                            );
+                        }}
+                    >
+                        {" "}
+                        REPORT{" "}
+                    </button>
+                </div>
             </div>
         );
     }

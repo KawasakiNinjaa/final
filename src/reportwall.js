@@ -23,11 +23,12 @@ export class ReportWall extends React.Component {
                 }}
             >
                 {controlReports.map(report => (
-                    <div key={report.id} id="chatroommessage">
-                        <h1>
+                    <div key={report.id} id="report">
+                        <h3>
                             {" "}
-                            {report.line_vbb}, direction: {report.direction_id}
-                        </h1>
+                            CONTROL in {report.line_vbb}, direction:{" "}
+                            {report.direction_id}
+                        </h3>
                         <h6>
                             at: {report.location_id}, {report.created_at}{" "}
                         </h6>

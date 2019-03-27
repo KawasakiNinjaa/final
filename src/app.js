@@ -61,26 +61,30 @@ export default class App extends React.Component {
                 <BrowserRouter>
                     <div>
                         <div id="appbar">
-                            <div id="appbar-options">
-                                <a href="/logout">
-                                    <img
-                                        id="logoutbutton"
-                                        src="/logoutbutton.png"
-                                    />
-                                </a>
-                                <p id="greeting">
-                                    {" "}
-                                    Hi, {this.state.first} {this.state.last}!{" "}
-                                </p>
+                            <ReportWall />
+                            <div id="bg">
+                                <img
+                                    src="/barbackground.png"
+                                    width="100%"
+                                    height="275"
+                                />
                             </div>
                         </div>
+                        <img id="logoapp" src="ubahnlogo.png" />
+                        <h2 id="greeting">
+                            {" "}
+                            Run, {this.state.first} {this.state.last}...{" "}
+                        </h2>
+                        <h2 id="reportbutton">report a control</h2>
+                        <a href="/logout">
+                            <img id="logoutbutton" src="/logoutbutton.png" />
+                        </a>
+                        <ReportForm />
                         <Route
                             exact
                             path="/"
                             render={() => (
                                 <div id="landing">
-                                    <ReportForm />
-                                    <ReportWall />
                                     <MapContainer />
                                     {this.state.uploaderIsVisible && (
                                         <Uploader setImage={this.setImage} />
