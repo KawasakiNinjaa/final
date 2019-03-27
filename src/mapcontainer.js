@@ -7,8 +7,6 @@ const mapStyles = {
     height: "400px"
 };
 
-const title = "schlossPark";
-const pos = { lat: "52.522409", lng: "13.290515" };
 export class MapContainer extends Component {
     constructor(props) {
         super(props);
@@ -20,6 +18,27 @@ export class MapContainer extends Component {
     }
 
     render() {
+        const mapreport = this.props.mapreports;
+
+        console.log("mapreports: ", mapreport);
+
+        //
+        if (!mapreport) {
+            return null;
+        }
+
+        var lat = mapreport.map(report => {
+            return report.latitude;
+        });
+
+        console.log("lat mapreport: ", lat);
+        var lng = mapreport.map(report => {
+            return report.longitude;
+        });
+
+        console.log("lng mapreport: ", lng);
+
+        // let title = "schlossPark";
         return (
             <Map
                 google={this.props.google}
@@ -30,12 +49,114 @@ export class MapContainer extends Component {
                     lng: 13.413215
                 }}
             >
-                <Marker title={this.title} position={pos} />
+                {mapreport.map(report => {
+                    let pos = { lat: report.latitude, lng: report.longitude };
+                    return <Marker title={report.name} position={pos} />;
+                })}
             </Map>
         );
     }
 }
+const mapStateToProps = state => {
+    const stations = state.allStationsVbb;
+    const reports = state.controlReports;
+    console.log("stations in mapcontainer: ", stations);
+    console.log("reports in mapcontainer: ", reports);
 
-export default GoogleApiWrapper({
-    apiKey: "AIzaSyA5s8Oh0dgUpcmsGLS3XUYs6bVaSijV48E"
-})(MapContainer);
+    if (!stations || !reports) {
+        return null;
+    } else {
+        // function get_location(array) {
+        //     for (var i = 0; i < array.length; i++) {
+        //         return array[i].location_id;
+        //     }
+        // }
+        // var onlylocations = get_location(reports);
+        // console.log("onlylocations: ", onlylocations);
+
+        let onlyLoc = reports.map(report => {
+            return report.location_id;
+        });
+        console.log("onlyloc: ", onlyLoc);
+        console.log("stations: ", stations);
+
+        function getReport(arr1, arr2) {
+            let mapReport = [];
+            for (var i = 0; i < arr1.length; i++) {
+                for (var j = 0; j < arr2.length; j++) {
+                    if (arr1[i].name == arr2[j]) {
+                        mapReport.push(arr1[i]);
+                    }
+                }
+            }
+            return mapReport;
+        }
+        var mapreports = getReport(stations, onlyLoc);
+
+        // const singlereport = stations.filter(
+        //     station =>
+        //         station.name ==
+        //         reports.map(report => {
+        //             return report.location_id;
+        //         })
+        // );
+        // console.log("singlereport: ", singlereport);
+
+        // const user ={ ...mapReport, }
+
+        // var result = stations.map((station)=>{
+        //     {
+        //
+        //         ...station, reports.find(report=> report.location_id == station.name)
+        //
+        //     }
+        //
+        // }
+
+        // Object.assign(
+        //     {},
+        //     message,
+        //     LinkCount.find(link => link.day === message.day) || {}
+        // );
+
+        // const mapReports = {};
+        //
+        //
+        //
+        // var reportedStations = stations.filter(
+        //     station => station.name == onlylocations
+        // );
+        // console.log("reportedStations: ", reportedStations);
+
+        // function get_station(array) {
+        //     for (var i = 0; i < array.length; i++) {
+        //         return array[i].lat;
+        //     }
+        // }
+        // var singleStation = get_station(stations);
+        // console.log("singleStation: ", singleStation);
+    }
+    // function mapReport(reports, stations) {
+    //     const stationsLen = stations.length;
+    //     const reportsLen = reports.length;
+    //     for (var i = 0; i < reportsLen; i++) {
+    //         for (var j = 0; j < stationsLen; j++) {
+    //             if (reports[i].name == stations[j].name) {
+    //                 return stations[j];
+    //             }
+    //         }
+    //     }
+    // }
+    //
+    // mapReport();
+
+    return {
+        mapreports: mapreports
+    };
+};
+
+export default connect(mapStateToProps)(
+    GoogleApiWrapper({
+        apiKey: "AIzaSyBLaT70MnI1tvmvd-NwXEZq-h3JtPXZo7k"
+    })(MapContainer)
+);
