@@ -368,25 +368,28 @@ io.on("connection", async socket => {
 
     socket.on("newReport", async data => {
         console.log("data in newReport: ", data);
-        const newMessage = await db.newReport(
+        const newReport = await db.newReport(
             userId,
             data.line,
             data.direction,
             data.location,
             data.comment
         );
-        console.log("newMessage_: ", newMessage.rows);
+        console.log("newMessage_: ", newReport.rows);
         const userStuff = await db.getUserById(userId);
-        const newReport = {
-            id: newMessage.rows[0].id,
-            user_id: newMessage.rows[0].user_id,
-            comment: newMessage.rows[0].comment,
-            created_at: newMessage.rows[0].created_at,
+        const newReportEntry = {
+            id: newReport.rows[0].id,
+            user_id: newReport.rows[0].user_id,
+            line_vbb: newReport.rows[0].line_vbb,
+            direction_id: newReport.rows[0].direction_id,
+            location_id: newReport.rows[0].location_id,
+            comment: newReport.rows[0].comment,
+            created_at: newReport.rows[0].created_at,
             first: userStuff.rows[0].first,
             last: userStuff.rows[0].last
         };
 
-        io.sockets.emit("newReport", newReport);
+        io.sockets.emit("newReport", newReportEntry);
     });
 });
 

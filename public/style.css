@@ -3,6 +3,14 @@
     padding: 0;
     box-sizing: border-box;
 }
+#myVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -9999;
+}
 
 #bg {
     z-index: -9999;
@@ -30,7 +38,8 @@
 }
 
 body {
-    font-family: "Hind Madurai", sans-serif;
+    font-family: "Saira", sans-serif;
+
     text-align: center;
     background-color: black;
 }
@@ -84,32 +93,42 @@ button {
 #registration-form {
     margin-top: 5rem;
 }
-
-#loginBar {
+#welcome-bar {
     display: block;
     height: 120px;
-    border-bottom: 2px solid #edc959;
-    overflow: hidden;
 }
-#loginLogo {
-    float: left;
-    height: 150px;
-    margin-left: 200px;
+
+#welcome-options {
+    float: right;
+    border: 2px solid DeepPink;
 }
+
+#welcome-options h1 {
+    margin: 30px;
+}
+
+#welcome-options h1:hover {
+    color: DeepPink;
+}
+
+#welcome-content {
+    margin-top: 5%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+#intro {
+    width: 500px;
+}
+
 #loginform {
     float: right;
     padding: 20px;
     margin-right: 150px;
+    border: 3px solid DeepPink;
 }
-#loginform1 {
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-#newhere {
-    float: right;
-}
+
 #uploadform {
     top: 20rem;
     right: 60rem;
@@ -118,11 +137,6 @@ button {
     background-color: #edc959;
     border-radius: 1rem;
     position: fixed;
-}
-#appbar {
-    display: block;
-    height: 120px;
-    border-bottom: 2px solid #edc959;
 }
 
 #report-form img {
@@ -140,6 +154,10 @@ button {
     height: 150px;
     float: left;
     left: 200px;
+}
+#appbar {
+    display: block;
+    height: 120px;
 }
 #appbar-options {
     margin-top: 2rem;
@@ -325,56 +343,4 @@ button {
     height: 3rem;
     width: 3rem;
     border-radius: 50%;
-}
-
-/* 000000000000000000000000000000000000000000000000000000000000000000000000*/
-.wholecaroussel {
-    height: 100vh;
-}
-#caroussel {
-    position: relative;
-    height: 100vh;
-    overflow: hidden;
-}
-.kitty {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    transform: translateX(100%);
-}
-.kitty.onscreen {
-    transform: translateX(0);
-    transition-property: transform;
-    transition-duration: 1s;
-}
-.kitty.exiting {
-    transform: translateX(-100%);
-    transition-property: transform;
-    transition-duration: 1s;
-}
-.kitty img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-}
-.wrap {
-    position: relative;
-    bottom: 20px;
-    text-align: center;
-    width: 100%;
-    bottom: 60px;
-}
-.dots {
-    width: 20px;
-    height: 20px;
-    border: 2px solid white;
-    border-radius: 50%;
-    display: inline-block;
-    margin: 0 5px;
-}
-.lit {
-    background-color: white;
 }

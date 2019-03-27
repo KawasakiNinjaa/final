@@ -5,6 +5,7 @@ import Profile from "./profile";
 import ReportForm from "./reportform";
 import { BrowserRouter, Route, Link } from "react-router-dom";
 import MapContainer from "./mapcontainer";
+import ReportWall from "./reportwall";
 
 export default class App extends React.Component {
     constructor(props) {
@@ -60,9 +61,6 @@ export default class App extends React.Component {
                 <BrowserRouter>
                     <div>
                         <div id="appbar">
-                            <a href="/">
-                                <img id="logoinapp" src="/logo.png" />
-                            </a>
                             <div id="appbar-options">
                                 <a href="/logout">
                                     <img
@@ -82,6 +80,7 @@ export default class App extends React.Component {
                             render={() => (
                                 <div id="landing">
                                     <ReportForm />
+                                    <ReportWall />
                                     <MapContainer />
                                     {this.state.uploaderIsVisible && (
                                         <Uploader setImage={this.setImage} />

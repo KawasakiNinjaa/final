@@ -36,7 +36,6 @@ export default class Registration extends React.Component {
         return (
             <div id="registration-wrap">
                 <div id="registration">
-                    <img src="" />
                     <div id="registration-form">
                         <h2> c r e a t e A n e w A c c o u n t </h2>
                         {this.state.error && (

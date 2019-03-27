@@ -1,6 +1,5 @@
 import React from "react";
 import axios from "./axios";
-import Caroussel from "./caroussel";
 import { Link } from "react-router-dom";
 
 export default class Login extends React.Component {
@@ -33,49 +32,28 @@ export default class Login extends React.Component {
     }
     render() {
         return (
-            <div>
-                <div id="loginBar">
-                    <img id="loginLogo" src="logo2.png" />
-                    <div id="loginform">
-                        {this.state.error && (
-                            <div className="error">
-                                <p> Oops!, something does not match.</p>{" "}
-                            </div>
-                        )}
-                        <div id="loginform1">
-                            <div>
-                                <p> e - m a i l </p>
-                                <input
-                                    name="email"
-                                    onChange={this.handleChange}
-                                    placeholder="e-mail"
-                                />
-                            </div>
-                            <div>
-                                <p> password </p>
-                                <input
-                                    type="password"
-                                    name="password"
-                                    onChange={this.handleChange}
-                                    placeholder="password"
-                                />
-                            </div>
-                            <div>
-                                <br />
-                                <button onClick={this.submit}>
-                                    {" "}
-                                    L o g I n{" "}
-                                </button>
-                            </div>
-                        </div>
-                        <br />
-                        <p id="newhere">
-                            new here? <Link to="/">join Coagula! </Link>
-                        </p>
+            <div id="loginform">
+                {this.state.error && (
+                    <div className="error">
+                        <p> Oops!, something does not match.</p>{" "}
                     </div>
-                </div>
+                )}
 
-                <Caroussel />
+                <p> e - m a i l </p>
+                <input
+                    name="email"
+                    onChange={this.handleChange}
+                    placeholder="e-mail"
+                />
+                <p> password </p>
+                <input
+                    type="password"
+                    name="password"
+                    onChange={this.handleChange}
+                    placeholder="password"
+                />
+                <br />
+                <button onClick={this.submit}> L o g I n </button>
             </div>
         );
     }

@@ -9,33 +9,31 @@ export class ReportWall extends React.Component {
         }
     }
     render() {
-        if (!this.props.chatroomMessages) {
+        if (!this.props.controlReports) {
             return null;
         }
-        const chatroomMessages = this.props.chatroomMessages;
+        const controlReports = this.props.controlReports;
+        console.log("controlReports: ", controlReports);
 
-        const chatroomMessagesList = (
+        const reportList = (
             <div
-                id="chatroomMessagesList"
+                id="report-list"
                 ref={elem => {
                     this.elem = elem;
                 }}
             >
-                {chatroomMessages.map(chatroomMessage => (
-                    <div key={chatroomMessage.id} id="chatroommessage">
-                        <Link to={`/user/${chatroomMessage.user_id}`}>
+                {controlReports.map(report => (
+                    <div key={report.id} id="chatroommessage">
+                        <h1>
                             {" "}
-                            <img id="imginchat" src={chatroomMessage.img_url} />
-                        </Link>
+                            {report.line_vbb}, direction: {report.direction_id}
+                        </h1>
+                        <h6>
+                            at: {report.location_id}, {report.created_at}{" "}
+                        </h6>
+                        <p> {report.comment} </p>
                         <div>
-                            <div>
-                                <h6>
-                                    {chatroomMessage.first}{" "}
-                                    {chatroomMessage.last}{" "}
-                                    {chatroomMessage.created_at}{" "}
-                                </h6>
-                            </div>
-                            <p> {chatroomMessage.comment} </p>
+                            <div />
                         </div>
                     </div>
                 ))}
@@ -45,16 +43,14 @@ export class ReportWall extends React.Component {
         return (
             <div>
                 <div id="chat-container" className="chat-msg-container">
-                    <h1 id="chatroomlabel"> CHATROOM</h1>
-
-                    {chatroomMessagesList}
+                    {reportList}
                 </div>
             </div>
         );
     }
 }
 const mapStateToProps = state => {
-    console.log("global state in OnlineUsers: ", state);
+    console.log("global state in ReportWall: ", state);
 
     return state;
 };

@@ -1,11 +1,14 @@
 import React, { Component } from "react";
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from "google-maps-react";
+import { connect } from "react-redux";
 
 const mapStyles = {
     width: "600px",
     height: "400px"
 };
 
+const title = "schlossPark";
+const pos = { lat: "52.522409", lng: "13.290515" };
 export class MapContainer extends Component {
     constructor(props) {
         super(props);
@@ -26,7 +29,9 @@ export class MapContainer extends Component {
                     lat: 52.521918,
                     lng: 13.413215
                 }}
-            />
+            >
+                <Marker title={this.title} position={pos} />
+            </Map>
         );
     }
 }

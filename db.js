@@ -167,7 +167,7 @@ exports.updatePfWithPass = function updatePfWithPass(
 };
 
 exports.getReports = function getReports() {
-    let q = `SELECT users.first, users.last, reports.line_vbb, reports.direction_id, reports.location_id, reports.comment
+    let q = `SELECT users.first, users.last, reports.line_vbb, reports.direction_id, reports.location_id, reports.comment, reports.created_at
     FROM reports
     JOIN users
     ON reports.user_id = users.id
