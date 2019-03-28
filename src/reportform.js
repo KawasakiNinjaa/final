@@ -41,6 +41,7 @@ export class ReportForm extends React.Component {
         audio.play();
     }
     render() {
+        console.log("formVisible", this.props.formVisible);
         console.log("stations: ", this.props.stations);
 
         if (
@@ -59,14 +60,14 @@ export class ReportForm extends React.Component {
         const stations = this.props.stations;
 
         return (
-            <div id="report-form-wrap">
+            <div className={this.props.formVisible ? "on" : "report-form-wrap"}>
                 <div id="report-form">
                     <img className="dropbtn" src="./ubahnbutton.png" />
                     <img className="dropbtn" src="./sbahnbutton.png" />
                     <img className="dropbtn" src="./trambutton.png" />
                     <img className="dropbtn" src="./busbutton.png" />
 
-                    <p> Line </p>
+                    <h2> Line </h2>
                     <datalist id="lines">
                         {ubahn.map(line => {
                             return (
@@ -112,7 +113,7 @@ export class ReportForm extends React.Component {
                         onChange={this.handleChange}
                     />
 
-                    <p> Direction </p>
+                    <h2> Direction </h2>
                     <datalist id="stations">
                         {stations.map(station => {
                             return (
@@ -131,7 +132,7 @@ export class ReportForm extends React.Component {
                         list="stations"
                         onChange={this.handleChange}
                     />
-                    <p> Your location </p>
+                    <h2> Your location </h2>
                     <datalist id="location">
                         {stations.map(station => {
                             return (
@@ -151,7 +152,7 @@ export class ReportForm extends React.Component {
                         list="location"
                         onChange={this.handleChange}
                     />
-                    <p> Comments </p>
+                    <h2> Comments </h2>
                     <textarea name="comment" onChange={this.handleChange} />
                     <br />
                     <button

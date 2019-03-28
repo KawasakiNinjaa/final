@@ -46,11 +46,43 @@ export class MapContainer extends Component {
                     }}
                 >
                     {mapreport.map(report => {
+                        let today = new Date();
+                        var date =
+                            today.getFullYear() +
+                            "-" +
+                            "0" +
+                            (today.getMonth() + 1) +
+                            "-" +
+                            today.getDate();
+                        var newTimeStamp = report.created_at.split("T").shift();
+                        var dateTime = date;
+                        console.log("datetime: ", dateTime);
+                        console.log("newTimeStamp", newTimeStamp);
                         let pos = {
-                            lat: report.latitude,
-                            lng: report.longitude
+                            lat: report.station.latitude,
+                            lng: report.station.longitude
                         };
-                        return <Marker title={report.name} position={pos} />;
+                        if (newTimeStamp === dateTime) {
+                            return (
+                                <Marker
+                                    title={report.station.name}
+                                    position={pos}
+                                />
+                            );
+                        }
+                    })}
+
+                    {mapreport.map(report => {
+                        let pos = {
+                            lat: report.station.latitude,
+                            lng: report.station.longitude
+                        };
+                        return (
+                            <InfoWindow
+                                title={report.station.name}
+                                position={pos}
+                            />
+                        );
                     })}
                 </Map>
             </div>
@@ -75,7 +107,10 @@ const mapStateToProps = state => {
         // console.log("onlylocations: ", onlylocations);
 
         let onlyLoc = reports.map(report => {
-            return report.location_id;
+            return {
+                location_id: report.location_id,
+                created_at: report.created_at
+            };
         });
         console.log("onlyloc: ", onlyLoc);
         console.log("stations: ", stations);
@@ -84,8 +119,11 @@ const mapStateToProps = state => {
             let mapReport = [];
             for (var i = 0; i < arr1.length; i++) {
                 for (var j = 0; j < arr2.length; j++) {
-                    if (arr1[i].name == arr2[j]) {
-                        mapReport.push(arr1[i]);
+                    if (arr1[i].name == arr2[j].location_id) {
+                        mapReport.push({
+                            station: arr1[i],
+                            created_at: arr2[j].created_at
+                        });
                     }
                 }
             }

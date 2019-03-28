@@ -46,23 +46,22 @@ a {
     color: #f4f5ef;
 }
 input {
-    border: 2px solid #f4f5ef;
+    border: 2px solid DeepPink;
     font-size: 1em;
     border-radius: 0.25em;
-    color: #f4f5ef;
+    color: DeepPink;
     background: transparent;
 }
 
 input:hover {
-    background: #bb2d4a;
-    border: 2px solid #edc959;
+    background: white;
 }
 textarea {
-    border: 2px solid #f4f5ef;
+    border: 2px solid DeepPink;
     font-size: 1em;
     border-radius: 0.25em;
-    color: #f4f5ef;
-    background-color: #334552;
+    color: DeepPink;
+    background-color: transparent;
 }
 
 button {
@@ -148,25 +147,46 @@ button {
     width: 30px;
 }
 
-#report-form-wrap {
+.report-form-wrap {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    visibility: hidden;
+
+    margin-top: 25%;
     overflow: hidden;
-    position: relative;
+    position: absolute;
     height: 400px;
+    border: 10px solid red;
+    width: auto;
+}
+.on.report-form-wrap {
+    visibility: visible;
 }
 
 #report-form {
-    border: 20px solid DeepPink;
-
+    margin-top: 10%;
+    transform: translateX(100%);
+    background-color: rgba(249, 179, 221, 0.2);
+    border: 5px solid DeepPink;
     position: absolute;
-
-    right: -250px;
+    left: 100%;
     top: ;
+}
+.on #report-form {
+    left: 70%;
+    /* transform: translateX(0); */
+    transition-property: left;
+    transition-duration: 3s;
 }
 
 #app h2 {
     color: DeepPink;
 }
-
+#appbar h5 {
+    color: orange;
+}
 #appbar {
     margin: 0;
     padding: 0;
@@ -178,17 +198,35 @@ button {
     border-bottom-right-radius: 100%;
 }
 
+#rightbar {
+    background-color: rgba(249, 179, 221, 0.2);
+
+    height: 500px;
+    width: 200px;
+    position: relative;
+    margin-top: 10%;
+    float: right;
+    border: 5px solid DeepPink;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
 #reportbutton {
-    position: absolute;
-    margin-top: 10%;
-    right: 20px;
-    margin-top: 10%;
+}
+
+#reportbutton:hover {
+    text-transform: uppercase;
+}
+
+#yourrights:hover {
+    text-transform: uppercase;
 }
 
 #logoutbutton {
-    position: absolute;
-    right: 20px;
-    margin-top: 13%;
+    width: 80px;
+}
+#logoutbutton:hover {
+    width: 100px;
 }
 
 #logoapp {
@@ -209,8 +247,6 @@ button {
 }
 #greeting {
     float: right;
-
-    color: DeepPink;
 }
 #landing {
     display: flex;
@@ -236,19 +272,39 @@ button {
     height: 200px;
 }
 
+.ticker {
+    margin-top: 1rem;
+    font-family: "Press Start 2P";
+    font-style: orange;
+    height: 40px;
+    margin-left: 1.5rem;
+    background-color: black;
+    width: 97%;
+    border: 5px solid #02011c;
+    box-shadow: 13px 10px 5px 1px rgba(0, 0, 0, 0.75);
+}
+.ticker div {
+    height: 50px;
+}
+.ticker h5 {
+    margin-top: 20px;
+}
+
 #report-list {
-    height: auto;
-    width: auto;
+    height: 100%;
+    width: 100%;
     padding: 0;
 }
 #report {
     margin-left: 1.5rem;
     margin-top: 1rem;
-    background-color: black;
-    border-radius: 4rem;
+    background-color: darkblue;
+    border: 20px solid #02011c;
     height: auto;
     display: flex;
     flex-direction: row;
+    justify-content: space-around;
+    box-shadow: 13px 10px 5px 1px rgba(0, 0, 0, 0.75);
 }
 
 #editprofile {

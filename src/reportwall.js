@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import MoveStuffAround from "./ticker.js";
 
 export class ReportWall extends React.Component {
     componentDidUpdate() {
@@ -22,22 +23,53 @@ export class ReportWall extends React.Component {
                     this.elem = elem;
                 }}
             >
-                {controlReports.map(report => (
-                    <div key={report.id} id="report">
-                        <h3>
-                            {" "}
-                            CONTROL in {report.line_vbb}, direction:{" "}
-                            {report.direction_id}
-                        </h3>
-                        <h6>
-                            at: {report.location_id}, {report.created_at}{" "}
-                        </h6>
-                        <p> {report.comment} </p>
-                        <div>
-                            <div />
-                        </div>
-                    </div>
-                ))}
+                <MoveStuffAround />
+                {controlReports.map(report => {
+                    let today = new Date();
+                    var date =
+                        today.getFullYear() +
+                        "-" +
+                        "0" +
+                        (today.getMonth() + 1) +
+                        "-" +
+                        today.getDate();
+                    var newTimeStamp = report.created_at.split("T").shift();
+                    var dateTime = date;
+                    console.log("datetimeReportWall: ", dateTime);
+                    console.log("newTimeStampReportWall", newTimeStamp);
+
+                    if (newTimeStamp === dateTime) {
+                        return (
+                            <div key={report.id} id="report">
+                                <div>
+                                    <p> CONTROL </p>
+                                    <h1> {report.line_vbb} </h1>
+                                </div>
+                                <div>
+                                    <p> DIRECTION </p>
+                                    <h3>{report.direction_id}</h3>
+                                </div>
+                                <div>
+                                    <p>in {report.location_id}</p>
+                                    <p>
+                                        {" "}
+                                        at{" "}
+                                        {report.created_at
+                                            .split("T")[1]
+                                            .slice(0, -5)}
+                                        / /
+                                        {report.created_at.split("T").shift()}
+                                    </p>
+                                </div>
+                                <div>
+                                    <p> comments: </p>
+                                    <p> {report.comment} </p>
+                                    <div />
+                                </div>
+                            </div>
+                        );
+                    }
+                })}
             </div>
         );
 

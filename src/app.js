@@ -6,19 +6,19 @@ import ReportForm from "./reportform";
 import { BrowserRouter, Route, Link } from "react-router-dom";
 import MapContainer from "./mapcontainer";
 import ReportWall from "./reportwall";
-
 export default class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            uploaderIsVisible: false,
-            bio: "",
-            friendsIsVisible: false
+            formVisible: false
         };
-        this.showUploader = this.showUploader.bind(this);
-        this.setImage = this.setImage.bind(this);
-        this.setBio = this.setBio.bind(this);
-        this.showFriends = this.showFriends.bind(this);
+        this.showForm = this.showForm.bind(this);
+    }
+    showForm() {
+        console.log("I am showForm");
+        const { formVisible } = this.state;
+        //and toggle its value
+        this.setState({ formVisible: !formVisible });
     }
     showUploader() {
         //check if it's opened
@@ -52,6 +52,7 @@ export default class App extends React.Component {
         });
     }
     render() {
+        console.log("showForm: ", this.showForm);
         //if the ajax request didn't meet success, show nothing
         if (!this.state.id) {
             return null;
@@ -59,27 +60,29 @@ export default class App extends React.Component {
         return (
             <div id="app">
                 <BrowserRouter>
-                    <div>
+                    <div className="app1">
                         <div id="appbar">
                             <ReportWall />
-                            <div id="bg">
-                                <img
-                                    src="/barbackground.png"
-                                    width="100%"
-                                    height="275"
-                                />
+                        </div>
+                        <div id="greeting">
+                            <h2>
+                                {" "}
+                                Run, {this.state.first} {this.state.last}...{" "}
+                            </h2>
+                            <img id="logoapp" src="ubahnlogo.png" />
+                            <div id="rightbar">
+                                <h2 onClick={this.showForm} id="reportbutton">
+                                    report a control
+                                </h2>
+                                <h2 id="yourrights">your rights</h2>
+                                <a href="/logout">
+                                    <img
+                                        id="logoutbutton"
+                                        src="/run-logout.png"
+                                    />
+                                </a>
                             </div>
                         </div>
-                        <img id="logoapp" src="ubahnlogo.png" />
-                        <h2 id="greeting">
-                            {" "}
-                            Run, {this.state.first} {this.state.last}...{" "}
-                        </h2>
-                        <h2 id="reportbutton">report a control</h2>
-                        <a href="/logout">
-                            <img id="logoutbutton" src="/logoutbutton.png" />
-                        </a>
-                        <ReportForm />
                         <Route
                             exact
                             path="/"
@@ -92,6 +95,7 @@ export default class App extends React.Component {
                                 </div>
                             )}
                         />
+                        <ReportForm formVisible={this.state.formVisible} />
                     </div>
                 </BrowserRouter>
             </div>
