@@ -1,19 +1,24 @@
 import React from "react";
 import Registration from "./registration";
 import Login from "./login";
-import { HashRouter, Route } from "react-router-dom";
 
 export default class Welcome extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            loginVisible: false
+            loginVisible: false,
+            registrationVisible: false
         };
         this.showLogin = this.showLogin.bind(this);
+        this.showRegistration = this.showRegistration.bind(this);
     }
     showLogin() {
         const { loginVisible } = this.state;
         this.setState({ loginVisible: !loginVisible });
+    }
+    showRegistration() {
+        const { registrationVisible } = this.state;
+        this.setState({ registrationVisible: !registrationVisible });
     }
     render() {
         return (
@@ -22,10 +27,12 @@ export default class Welcome extends React.Component {
                     <source src="/ubahn.mp4" type="video/mp4" />
                 </video>
                 {this.state.loginVisible && <Login />}
+                {this.state.registrationVisible && <Registration />}
+
                 <div id="welcome-bar">
                     <div id="welcome-options">
                         <h1 onClick={this.showLogin}> LOG IN </h1>
-                        <h1> SIGN UP </h1>
+                        <h1 onClick={this.showRegistration}> SIGN UP </h1>
                     </div>
                 </div>
                 <div id="welcome-content">
@@ -48,16 +55,6 @@ export default class Welcome extends React.Component {
                     </div>
                     <img src="/ubahnlogo.png" />
                 </div>
-
-                <HashRouter>
-                    <div>
-                        <Route
-                            exact
-                            path="/registration"
-                            component={Registration}
-                        />
-                    </div>
-                </HashRouter>
             </div>
         );
     }
