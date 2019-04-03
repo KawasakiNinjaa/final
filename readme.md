@@ -2,7 +2,7 @@
 
 ## BVG KONTROLLEUR APP (no official name yet)
 
-Let people know when and where there is a control on the berlin transportation network in a selected amount of time.
+Let people know when and where there is a control on the berlin transportation network in a selected amount of time(current day).
 This app will be implemented for iOS and Android using ReactNative.
 
 What I'll be using:
