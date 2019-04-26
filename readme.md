@@ -1,6 +1,21 @@
-# RUN! (Web version)- An app to inform users about fare inspections in the Berlin-Brandenburg transportation network
+# RUN! (Web version)
 
-I will adapt this app to mobile device environments using React Native, but here I am creating a first sketch in web version using React.
+*Run!* is an app to inform users about fare inspections in the Berlin-Brandenburg transportation network area.
+
+(This app is under construction and there are more features, improvements, and a mobile version coming)
+
+
+## Project description
+*Run!* aims at fighting an abusive transportation fare system in a city that is changing fast, where the average price of all aspects of life is rising, but not citizens' incomes. *Run!* allows users help each other by reporting fare inspections.
+
+When users log in, they will find a "Report Wall" on the left side with the controls reported in the last 24 h.
+
+
+As background there is a map of the city with pointers marking the location of the reported controls. 
+
+
+On the right side, users will find a side bar with 
+
 
 ## Stack
     React, Google Maps API
@@ -8,12 +23,7 @@ I will adapt this app to mobile device environments using React Native, but here
     Sockets
     VBB JavaScript modules by @derhuerst
     
-## Landing page
 
--   Intro & Registration
--   Log in:
-    -   Password match check
-    -   (possible) Activating account with email link (nodemailer, new gmail account for that purpose)
 
 #### App
 
