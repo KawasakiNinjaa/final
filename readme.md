@@ -1,21 +1,14 @@
-# FINAL PROJECT:
+# RUN! (Web version)- An app to inform users about fare inspections in the Berlin-Brandenburg transportation network
 
-## BVG KONTROLLEUR APP (no official name yet)
+I will adapt this app to mobile device environments using React Native, but here I am creating a first sketch in web version using React.
 
-Let people know when and where there is a control on the berlin transportation network in a selected amount of time(current day).
-This app will be implemented for iOS and Android using ReactNative.
-
-What I'll be using:
-
--   React + Google Maps Geolocation API
--   Express
--   Sockets
-
----
-
-## Content
-
-#### Landing page
+## Stack
+    React, Google Maps API
+    Express
+    Sockets
+    VBB JavaScript modules by @derhuerst
+    
+## Landing page
 
 -   Intro & Registration
 -   Log in:
