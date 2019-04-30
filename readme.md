@@ -8,9 +8,8 @@
 ## Project description
 *Run!* aims at fighting an abusive transportation fare system in a city that is changing fast, where the average price of all aspects of life is rising, but not citizens' incomes. *Run!* allows users help each other by reporting fare inspections.
 
-![](public/runapp-login.gif | 250x250)
 
-<img src="public/runapp-login.gif" width="400" height="790">
+<img src="public/runapp-login.gif" width="790" height="400">
 
 
 
