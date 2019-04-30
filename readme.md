@@ -17,6 +17,9 @@ Here is the landing page, where users can create an account or log in.
 When users log in, they will find a "Report Wall" on the left side with the controls reported in the last 24 h.
 
 
+<img src="public/mainpage.gif" width="790" height="400">
+
+
 
 
 
