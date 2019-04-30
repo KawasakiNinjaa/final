@@ -8,9 +8,15 @@
 ## Project description
 *Run!* aims at fighting an abusive transportation fare system in a city that is changing fast, where the average price of all aspects of life is rising, but not citizens' incomes. *Run!* allows users help each other by reporting fare inspections.
 
+![](public/runapp-login.gif | 250x250)
+
+<img src="public/runapp-login.gif" width="400" height="790">
+
+
+
 When users log in, they will find a "Report Wall" on the left side with the controls reported in the last 24 h.
 
-![](public/runapp-login.gif)
+
 
 
 As background there is a map of the city with pointers marking the location of the reported controls. 
