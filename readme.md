@@ -10,7 +10,7 @@
 
 When users log in, they will find a "Report Wall" on the left side with the controls reported in the last 24 h.
 
-![Alt Text](runapp-login.gif)
+![](public/runapp-login.gif)
 
 
 As background there is a map of the city with pointers marking the location of the reported controls. 
