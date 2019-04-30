@@ -15,15 +15,44 @@ Here is the landing page, where users can create an account or log in.
 
 
 When users log in, they will find a "Report Wall" on the left side with the controls reported in the last 24 h.
-
+Google Maps API is integrated and will show a pointer with the location where a control was reported.
 
 <img src="public/mainpage.gif" width="790" height="400">
 
+Here we can see how the user reports a control. The inputs were prepopulated locally with two different npm packages that included all the stations and lines in Berlin-Brandenburg with ID and coordinates. These packages were very useful, since the response from the APIS were excessively big and filtering them was not an easy task.
+
+When a control is reported, we create a new object with name of station reported, and coordinates. Then we create a marker in our map like this:
+
+```JS
+let pos = {
+                            lat: report.station.latitude,
+                            lng: report.station.longitude
+                        };
+                        if (newTimeStamp === dateTime) {
+                            return (
+                                <Marker
+                                    title={report.station.name}
+                                    position={pos}
+                                />
+                            );
+                        }
+
+```
 
 
 
 
-As background there is a map of the city with pointers marking the location of the reported controls. 
+
+Lines, stations and existing reports are being stored in Redux. Also WebSockets are being used make users receive reports in real time. 
+
+
+
+
+
+
+
+
+
 
 
 On the right side, users will find a side bar with 
