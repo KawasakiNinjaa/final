@@ -10,7 +10,7 @@
 
 When users log in, they will find a "Report Wall" on the left side with the controls reported in the last 24 h.
 
-![](runapp-login.gif)
+! [] (runapp-login.gif)
 
 
 
