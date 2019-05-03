@@ -27,6 +27,12 @@ Google Maps API is integrated and will show a pointer with the location where a 
 
 Here we can see how the user reports a control. The inputs were prepopulated locally with two different npm packages that included all the stations and lines in Berlin-Brandenburg with ID and coordinates. These packages were very useful, since the response from the APIS were excessively big and filtering them was not an easy task.
 
+<img src="public/runapp3.gif" width="790" height="400">
+
+<img src="public/runapp4.gif" width="790" height="400">
+
+
+
 When a control is reported, we create a new object with name of station reported, and coordinates. Then we create a marker in our map like this:
 
 ```JS
